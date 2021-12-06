@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/contact/submit', function () {
-    return redirect(route('showContact'));
-})->name('sendContact');
+
+Route::post('/contact/submit',[ContactController::class,'sendContact']) -> name('sendContact');
