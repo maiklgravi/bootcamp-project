@@ -14,7 +14,7 @@ class AddPaymentColumInPaymentTable extends Migration
     public function up()
     {
         Schema::table('payment', function (Blueprint $table) {
-            $table->decimal('payment', $precision = 8, $scale = 2);
+            $table->decimal('value', $precision = 8, $scale = 2);
         });
     }
 
@@ -25,7 +25,7 @@ class AddPaymentColumInPaymentTable extends Migration
      */
     public function down()
     {
-        Schema::table('payment', function (Blueprint $table) {
+        Schema::table('value', function (Blueprint $table) {
             $table->dropColumn('payment');
         });
     }

@@ -22,7 +22,6 @@ class FilmInfoTable extends Migration
             $table->string('actors',50);
             $table->string('country',20);
             $table->integer('duration');
-            $table->timestamps();
             $table->foreign('id_films')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }

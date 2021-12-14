@@ -17,8 +17,7 @@ class FilmAlternativeNameTable extends Migration
         Schema::create('film_alternative_name', function (Blueprint $table) {
             $table->id();
             $table->integer('id_films');
-            $table->string('name', 255);
-            $table->timestamps();
+            $table->string('name', 30);
             $table->foreign('id_films')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }

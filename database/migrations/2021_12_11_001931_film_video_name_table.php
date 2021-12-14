@@ -18,7 +18,6 @@ class FilmVideoNameTable extends Migration
             $table->id();
             $table->integer('id_films');
             $table->string('name', 255);
-            $table->timestamps();
             $table->foreign('id_films')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
