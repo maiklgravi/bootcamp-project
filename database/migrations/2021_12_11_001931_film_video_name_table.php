@@ -16,9 +16,9 @@ class FilmVideoNameTable extends Migration
     {
         Schema::create('film_video_name', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_films');
-            $table->string('name', 255);
-            $table->foreign('id_films')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer('film_id');
+            $table->string('name', 30);
+            $table->foreign('film_id')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

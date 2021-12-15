@@ -25,8 +25,8 @@ class AddPaymentColumInPaymentTable extends Migration
      */
     public function down()
     {
-        Schema::table('value', function (Blueprint $table) {
-            $table->dropColumn('payment');
+        Schema::table('payment', function (Blueprint $table) {
+            $table->dropColumn('value');
         });
     }
 }

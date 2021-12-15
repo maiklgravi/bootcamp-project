@@ -16,13 +16,13 @@ class FilmInfoTable extends Migration
     {
         Schema::create('film_info', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_films',15)->unique();
+            $table->integer('film_id',15)->unique();
             $table->string('lang',15);
             $table->string('screenwriter',35);
             $table->string('actors',50);
             $table->string('country',20);
             $table->integer('duration');
-            $table->foreign('id_films')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('film_id')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

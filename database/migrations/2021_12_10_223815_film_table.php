@@ -16,15 +16,13 @@ class FilmTable extends Migration
     {
         DB::statement("
         CREATE TABLE `films` (
-            `id` int NOT NULL  AUTO_INCREMENT,
-            `image` varchar(100) NOT NULL,
-            `description` TEXT NOT NULL,
-            `date` DATE ,
-            `name` varchar(100) NOT NULL,
-            `status` INT, 
-            PRIMARY KEY(id)
-            )ENGINE=InnoDB
-        ");
+        `id` int NOT NULL  AUTO_INCREMENT,
+        `image` varchar(100) NOT NULL,
+        `description` TEXT NOT NULL,
+        `date` DATE ,
+        `name` varchar(100) NOT NULL,
+        `status` INT, 
+        PRIMARY KEY(id))ENGINE=InnoDB");
     }
 
     /**
