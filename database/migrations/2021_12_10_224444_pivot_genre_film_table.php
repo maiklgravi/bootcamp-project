@@ -33,6 +33,6 @@ class PivotGenreFilmTable extends Migration
      */
     public function down()
     {
-        DB::statement("DROP TABLE `genre_films");
+        DB::statement("DROP TABLE `genre_films`");
     }
 }
