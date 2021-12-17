@@ -26,7 +26,7 @@ class DropLangColumInFilmInfoTable extends Migration
     public function down()
     {
         Schema::table('film_info', function (Blueprint $table) {
-            $table->string('lang',15);
+            $table->string('lang',50);
         });
     }
 }

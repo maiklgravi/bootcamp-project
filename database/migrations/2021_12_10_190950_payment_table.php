@@ -15,15 +15,16 @@ class PaymentTable extends Migration
     public function up()
     {
         DB::statement("
-        CREATE TABLE `payment` (
-        `id` bigint(20) AUTO_INCREMENT,
-        `id_user` bigint(20) unsigned,
-        `month` int NOT NULL unsigned,
-        `date_payment`  DATE  NOT NULL unsigned,
-        PRIMARY KEY(`id`),
-        FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-        ON UPDATE CASCADE 
-        ON DELETE CASCADE) ENGINE=InnoDB");
+         CREATE TABLE `payment` (
+          `id` bigint(20) AUTO_INCREMENT,
+          `id_user` bigint(20) unsigned,
+          `month` int NOT NULL unsigned,
+          `date_payment`  DATE  NOT NULL unsigned,
+           PRIMARY KEY(`id`),
+           FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) 
+           ON UPDATE CASCADE  ON DELETE CASCADE
+            ) ENGINE=InnoDB
+            ");
     }
 
     /**
