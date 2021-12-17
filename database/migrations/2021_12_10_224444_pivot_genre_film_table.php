@@ -15,12 +15,13 @@ class PivotGenreFilmTable extends Migration
     public function up()
     {
         DB::statement("
-        CREATE TABLE `genre_films`(
-           `film_id` int NOT NULL,
-           `genre_id` int NOT NULL,
-            FOREIGN KEY (film_id) REFERENCES films(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            FOREIGN KEY (genre_id) REFERENCES genre(id) ON UPDATE CASCADE ON DELETE CASCADE
-            )ENGINE=InnoDB");
+         CREATE TABLE `genre_films`(
+          `film_id` int NOT NULL,
+          `genre_id` int NOT NULL,
+           FOREIGN KEY (film_id) REFERENCES films(id) ON UPDATE CASCADE ON DELETE CASCADE,
+           FOREIGN KEY (genre_id) REFERENCES genre(id) ON UPDATE CASCADE ON DELETE CASCADE
+           )ENGINE=InnoDB
+           ");
     }
 
     /**
