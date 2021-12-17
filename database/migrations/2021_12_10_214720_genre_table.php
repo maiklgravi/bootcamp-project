@@ -19,7 +19,8 @@ class GenreTable extends Migration
           id` int NOT NULL  AUTO_INCREMENT,
           `name` varchar(50) NOT NULL unique,
           PRIMARY KEY(id)
-          )ENGINE=InnoDB");
+          )ENGINE=InnoDB
+          ");
     }
 
     /**
