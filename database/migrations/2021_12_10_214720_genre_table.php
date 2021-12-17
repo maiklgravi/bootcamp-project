@@ -16,9 +16,10 @@ class GenreTable extends Migration
     {
         DB::statement("
         CREATE TABLE `genre`(
-        `id` int NOT NULL  AUTO_INCREMENT,
-        `name` varchar(50) NOT NULL unique,
-        PRIMARY KEY(id))ENGINE=InnoDB");
+           `id` int NOT NULL  AUTO_INCREMENT,
+           `name` varchar(50) NOT NULL unique,
+            PRIMARY KEY(id)
+            )ENGINE=InnoDB");
     }
 
     /**
