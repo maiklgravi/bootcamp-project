@@ -9,7 +9,7 @@ class FilmInfo extends Model
 {
     use HasFactory;
     protected $table='film_info';
-    protected $fillable = array('name', 'film_id','duration','actors','screenwriter');
+    protected $fillable = array('film_id','duration','actors','screenwriter');
     public function film()
     {
         return $this->hasOne(Film::class);
