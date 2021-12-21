@@ -1,0 +1,236 @@
+body{
+	background-color: rgb(211, 205, 205);
+}
+.dog{
+	min-height: 60vh;
+}
+.ending{
+	min-height: 60vh;
+}
+.name_film{
+	color: #fff;
+}
+.film-v{
+	min-width: 100vw;
+
+}
+.cinema_previu{
+	align-items: center;
+}
+.film_item{
+	max-height: 65vh;
+	max-width: 100%;
+	overflow:unset;
+	display: block;
+}
+.gener_select_items{
+	display: flex;
+	flex-direction: wrap;
+	justify-content: space-around;
+}
+.gener_select_item{
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	width:180px ;
+	height: 40px;
+	border: 3px solid #000;
+	border-radius: 5px;
+    
+    margin-bottom: 25px;
+}
+.gener_select_item:hover{
+color: #fff;
+background-color: rgb(230, 92, 92);
+}
+.down_footer{
+	min-height: 40vh;
+	color:#fff;
+	font-size: 20px;
+	padding: 25px;
+	background-color: rgb(49, 53, 56);
+
+}
+.list_foter{
+	display: flex;
+	flex-direction: wrap;
+	justify-content: space-around;
+	padding: 20px;
+}
+.list_foter_item{
+	width: 50%;
+}
+.copiright{
+	text-align: center;
+}
+.social_icon{
+	display: flex;
+	flex-direction: wrap;
+}
+.social_icon_item{
+	
+	text-align: center;
+	border-radius: 5px;
+	width: 100px;
+    background-color: #fff;
+	margin: 10px;
+}
+.personal_cabinet_button{
+	background: #fff;
+	border-radius: 7px;
+	margin-bottom: 10px;
+}
+.gener_select{
+	border-radius: 15px;
+	margin-top: 5px;
+	padding: 10px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background-color: #fff;
+}
+.searc_bar{
+	margin-top: 25px;
+	max-width: 600px;
+}
+.film_search_items{
+	margin-top: 20px;
+	background-color: #fff;
+	min-height: 300px;
+}
+.film_search_item{
+	display:flex;
+	flex-direction: wrap;
+	border: 10px;
+}
+.image_item{
+	margin-top: 10px;
+	display: block;
+	height: 270px;
+}
+.image_search_films{
+	width: 250px;
+	background-color: black;
+}
+.list_searc_film{
+
+	max-width: 280px ;
+	margin: 20px;
+	background-color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.years_gener{
+	font-size: 14px;
+	margin-top: 5px;
+	padding: 4px;
+	color: cadetblue;
+}
+.name_info{
+color: #000;
+padding: 2px;
+font-weight: 600;
+padding-top: 5px;
+}
+.hreff_decoraton
+{
+	text-decoration: none;
+	margin-bottom: 20px;
+}
+.search_list{
+	display: flex;
+	flex-direction: wrap;
+	justify-content: space-around;
+}
+.blog_item{
+	display: flex;
+	flex-direction: wrap;
+	margin: 40px;
+	min-width: 100vh;
+	background-color: #fff;
+}
+.imaiges_blog{
+	padding: 15px;
+}
+.title_blog{
+	font-size: 35px;
+	font-weight: 600;
+	margin-top: 15px;
+	margin-left: 50px;
+	margin-bottom: 50px;
+}
+.autor_blog{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+.description_blog{
+	margin-left: 30px;
+	font-size: 25px;
+	min-height: 56%;
+}
+.image_about{
+	width: 100vw;
+}
+.item_about{
+	min-height: 60vh;
+	margin-top: 100px;
+}
+.title_about{
+	font-size: 30px;
+	font-weight: 600;
+}
+.comments{
+	background-color: cadetblue;
+	min-height: 40vh;
+}
+.comment_title{
+	margin-top: 50px;
+	margin-left: 50px;
+	font-size: 30px;
+	font-weight: 600;
+}
+.comments_item{
+	padding: 20px;
+	background-color: #fff;
+}
+.autor_name_comment{
+	margin-top: 10px;
+	display: flex;
+	color: cadetblue;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.helou_tab{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 40px;
+	font-weight: 600;
+	background-color: crimson;
+	color: #fff;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+.cabinet_status{
+	margin: 50px;
+	font-size: 30px;
+	font-weight: 600;
+}
+.price_table{
+	padding: 20px;
+	background-color: #fff;
+	margin-bottom: 100px;
+}
+@media (max-width: 1200px){
+
+
+}
+@media (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+@media (max-width: 414px){
+
+}
