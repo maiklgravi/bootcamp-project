@@ -3,15 +3,15 @@
 <div class=" ">
 	<div class="row bg-dark pb-4">
 		<div class="col-4 ms-5 mt-2 ">
-		<img src="09.jpg">	
+      <img class="imaiges_blog" src="storage/{{$articles->image}}" alt="">
 		</div>
 		<div class="col-6 name_film fs-1 w-70">
 			{{$articles->title}}
             <div class="col-12 name_film fs-5">Category: {{$articles->category}}</div>
             <div class="col-12 name_film fs-5">Descrition: {{$articles->description}}</div>
-
+            <div class="col-12 name_film fs-5">Name autor: {{$articles->user->name}}</div>
             <div class="col-12 name_film fs-5">Tags: #new</div>
-            <div class="col-12 name_film mt-5 fs-5">{{$articles->author->name}}/{{$articles->publised_at}}</div>
+            <div class="col-12 name_film mt-5 fs-5"></div>
 			
 		</div>
 	</div>
@@ -31,19 +31,28 @@
             <button type="submit" class="btn btn-primary mb-3">Send comment</button>
           </div>
     </div>
-    <div class="comments">
-        <div class="comment_title">
-Comments
-        </div>
-    <div class="comments_item mt-5 container">
-    <div class="comment_article">
-      {{$articles->comments()->count()}}
-    </div>
-    <div class="autor_name_comment">
-      {{$articles->author->name}}/{{$articles->publised_at}}
-    </div>
-    </div>
+    <div>
 
     </div>
+    <div class="comments">
+        <div class="comment_title">
+Comments {{$articles->comments()->count()}}
+        </div>
+        @foreach ($articles->comments as $comments)
+
+    <div class="comments_item mt-5 container">
+    <div class="comment_article">
+      {{$comments->message}}
+    </div>
+    <div class="autor_name_comment">
+    </div>
+    {{$comments->author_email}}/{{$comments->created_at}}
+    </div>
+  </div>
+  
+  </div>
+    </div>
+ 
+        @endforeach
 </div>
 @endsection

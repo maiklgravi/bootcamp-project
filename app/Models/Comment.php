@@ -14,6 +14,6 @@ class Comment extends Model
         'message'
     ];
     public  function article(){
-        return $this->belongsTo(Article::class , 'id');
+        return $this->belongsTo(Article::class);
     }
 }

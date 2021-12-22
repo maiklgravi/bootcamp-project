@@ -8,7 +8,7 @@
                 {{$articles->description}}
             </div>
             <div class="button_more_blog">
-                <a href="{{route('blogArticle',['id'=>$articles->id])}}"><button  type="button" class="btn btn-danger ms-5 btn-lg">More</button></a>
+                <a href="{{route('blogArticle',['articlesId'=>$articles->id])}}"><button  type="button" class="btn btn-danger ms-5 btn-lg">More</button></a>
             </div>
             <div class="autor_blog">
                  <div class="tags">#new</div>

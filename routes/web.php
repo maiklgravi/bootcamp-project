@@ -26,4 +26,4 @@ Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
 Route::get('/film',[FilmController::class,'index'])->name('film');
 Route::get('/contact_us',[ContactUsController::class,'index'])->name('contact_us');
 Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet');
-Route::get('/blog/article/1',[ArticleController::class,'show'])->name('blogArticle');
+Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
