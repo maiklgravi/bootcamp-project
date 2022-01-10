@@ -1,5 +1,9 @@
 @extends('layout')
 @section('content')
+<div class="helou_tab">
+	Welcom Andrei
+	
+</div>
 <div class="cabinet_status">
 	Your status: active
 </div>

@@ -1,21 +1,14 @@
 body{
 	background-color: rgb(211, 205, 205);
 }
-.dog{
-	min-height: 60vh;
-}
-.ending{
-	min-height: 60vh;
-}
+
+
 .name_film{
 	color: #fff;
 }
 .film-v{
 	min-width: 100vw;
 
-}
-.cinema_previu{
-	align-items: center;
 }
 .film_item{
 	max-height: 65vh;
@@ -44,22 +37,13 @@ color: #fff;
 background-color: rgb(230, 92, 92);
 }
 .down_footer{
-	min-height: 40vh;
 	color:#fff;
 	font-size: 20px;
 	padding: 25px;
 	background-color: rgb(49, 53, 56);
 
 }
-.list_foter{
-	display: flex;
-	flex-direction: wrap;
-	justify-content: space-around;
-	padding: 20px;
-}
-.list_foter_item{
-	width: 50%;
-}
+
 .copiright{
 	text-align: center;
 }
@@ -79,6 +63,7 @@ background-color: rgb(230, 92, 92);
 	background: #fff;
 	border-radius: 7px;
 	margin-bottom: 10px;
+	max-width: 55px;
 }
 .gener_select{
 	border-radius: 15px;
@@ -147,6 +132,12 @@ padding-top: 5px;
 	margin: 40px;
 	min-width: 100vh;
 	background-color: #fff;
+}
+.image_width{
+	width: 100%;
+}
+.text_adaptiv{
+	font-size: 2vw;
 }
 .imaiges_blog{
 	padding: 15px;
@@ -221,6 +212,10 @@ padding-top: 5px;
 	background-color: #fff;
 	margin-bottom: 100px;
 }
+.status_item{
+	color: rgb(86, 128, 8);
+}
+
 @media (max-width: 1200px){
 
 
