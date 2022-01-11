@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 
 class Article extends Model
 {
@@ -21,6 +22,10 @@ class Article extends Model
         'seo_description',
     ];
 
+    public function getImageUrlAttribute(){
+        return Storage::url($this->image);
+    }
+
     public  function category(){
         return $this->belongsTo(BlogCategory::class);
     }
@@ -28,4 +33,15 @@ class Article extends Model
     public  function blogTags(){
         return $this->belongsToMany(BlogTag::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    
+
+    
 }

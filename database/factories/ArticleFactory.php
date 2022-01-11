@@ -15,6 +15,8 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        $image = $this->faker->image('storage/app/public');
+        $imageName = pathinfo($image, PATHINFO_FILENAME) . '.' . pathinfo($image, PATHINFO_EXTENSION);
         return [
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
@@ -22,7 +24,7 @@ class ArticleFactory extends Factory
             'author_id' => User::factory(),
             'published_at' => $this->faker->dateTime(),
             'excerpt' => $this->faker->sentence(),
-            'image' => $this->faker->image('storage/app/public', $width = 640, $height = 480, $category = null, $fullPath = false),
+            'image' => $imageName,
             'seo_title' => $this->faker->sentence(),
             'seo_description' => $this->faker->sentence(),
         ];

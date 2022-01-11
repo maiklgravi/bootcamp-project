@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AboutAsController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\PersonalCabinet;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/contact',function(){
-    return view('contact');
-}) -> name('showContact');
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/blog',[BlogController::class,'index'])->name('blog');
+Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
+Route::get('/film',[FilmController::class,'index'])->name('film');
+Route::get('/contact_us',[ContactUsController::class,'index'])->name('contact_us');
+Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet');
+Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');

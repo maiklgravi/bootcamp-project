@@ -20,6 +20,12 @@ class Film extends Model
     {
         return $this->belongsToMany(Genre::class);
     }
+    public function filmsComments(){
+        return $this->hasMany(FilmsComment::class);
+    }
+    public function filmsLike(){
+        return $this->hasMany(FilmsLike::class);
+    }
     protected $fillable = array('image', 'description','date','name','status');
     
 
