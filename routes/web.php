@@ -27,3 +27,4 @@ Route::get('/film',[FilmController::class,'index'])->name('film');
 Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet');
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs');
+Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
