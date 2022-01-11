@@ -13,14 +13,14 @@
 				<a class="nav-link" href="{{route('about_us')}}">About us</a>
 			  </li>
 			  <li class="nav-item text_adaptiv">
-				<a class="nav-link" href="{{route('contact_us')}}">Contact us</a>
+				<a class="nav-link" href="{{route('contactUs')}}">Contact us</a>
 			  </li>
 			  <li class="nav-item text_adaptiv">
 				<a class="nav-link" href="{{route('blog')}}">Blog</a>
 			  </li>
 			  <li class="nav-item text_adaptiv">
 				<a class="nav-link" href="{{route('film')}}">Films</a>
-			  </li>		    
+			  </li>
 			</ul>
 			<div class="p-2 personal_cabinet_button">
 				<a href="{{route('cabinet')}}" class="personal_cabinet_button">
