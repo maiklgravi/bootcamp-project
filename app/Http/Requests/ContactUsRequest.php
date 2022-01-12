@@ -13,14 +13,12 @@ class ContactUsRequest extends FormRequest
         return [
             'email' => ['string', 'email', 'required'],
             'name' => ['min:2', 'required', 'string'],
-            'department' => [
+            'subject' => [
                 'required',
                 'string',
-                Rule::in(['administration', 'accounting', 'technicalDepartment', 'logistic']),
+                Rule::in(['error', 'offerts', 'refund']),
             ],
-            'districts' => ['required', 'array', 'min:1', 'in:chisinau,orhei,straseni'],
             'message' => ['required', 'string', 'min:10'],
-            'readTerms' => ['required'],
     ];
     }
 }

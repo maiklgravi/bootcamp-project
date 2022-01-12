@@ -30,14 +30,13 @@ class ContactUsController extends Controller
             [
                 'email'=>$data['email'],
                 'name'=>$data['name'],
-                'districts'=>$data['districts'],
-                'department'=>$data['department'],
+                'subjectMessage'=>$data['subject'],
                 'messageText'=>$data['message']
             ],
             function (Message $message) use($data){
                 $message->subject('Message from ' . $data['email']);
                 $message->to('tech@group.app');
-                $message->from('no_reply@group.app', 'Ballon mailer');
+                $message->from('no_reply@group.app', 'Cinema Helper');
         } );
 
         return redirect()->route('contactUs')->withInput($data);
