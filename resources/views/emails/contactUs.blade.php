@@ -6,4 +6,6 @@
 <p>Subject: {{$subjectMessage}}</p>
 <p>Message:</p>
 <p>{{$messageText}}</p>
+</body>
+</html>
 
