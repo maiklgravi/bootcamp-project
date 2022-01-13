@@ -18,13 +18,8 @@ class ContactUsController extends Controller
 
     public function send(ContactUsRequest $request): RedirectResponse
     {
-        $collback = function (string $test): string{
-            return
-                "{$test} input";
-
-        };
         $data = $request->validated();
-        \Log::debug($collback('test'), $data);
+        \Log::debug('test', $data);
         \Mail::send(
             'emails.contactUs',
             [
