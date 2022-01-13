@@ -7,6 +7,7 @@ use App\Http\Requests\ContactUsRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Mail\Message;
+use App\Services\ContactUsMailer;
 
 
 class ContactUsController extends Controller
@@ -16,23 +17,12 @@ class ContactUsController extends Controller
         return view('contacts.contactUs');
     }
 
-    public function send(ContactUsRequest $request): RedirectResponse
+    public function send(ContactUsRequest $request,ContactUsMailer $mailer): RedirectResponse
     {
+       
         $data = $request->validated();
         \Log::debug('test', $data);
-        \Mail::send(
-            'emails.contactUs',
-            [
-                'email'=>$data['email'],
-                'name'=>$data['name'],
-                'subjectMessage'=>$data['subject'],
-                'messageText'=>$data['message']
-            ],
-            function (Message $message) use($data){
-                $message->subject('Message from ' . $data['email']);
-                $message->to('tech@group.app');
-                $message->from('no_reply@group.app', 'Cinema Helper');
-        } );
+        $mailer->send($data);
 
         return redirect()->route('contactUs')->withInput($data);
     }
