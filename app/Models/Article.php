@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 
-class Article extends Model
+class Article extends Model implements LoggableInterface
 {
     use HasFactory;
 
@@ -40,6 +40,19 @@ class Article extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+    public function convertToLoggableString(): string{
+        return "Atrile with id {$this->id}";
+    }
+    public function getData(): array{
+        return[
+            'id'=> $this->id,
+            'title'=>$this->title,
+            'author_id'=>$this->author_id,
+            'seo_title'=>$this->seo_title,
+            'published_at'=>$this->published_at,
+
+        ];
     }
     
 
