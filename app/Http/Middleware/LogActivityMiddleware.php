@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 use App\Services\UserRepresenationTrait;
+use App\Services\DummyRequestActivityLogger;
 use Closure;
 use Illuminate\Http\Request;
 use Psr\Log\LoggerInterface;
@@ -10,12 +11,13 @@ class LogActivityMiddleware
 
 {
     use UserRepresenationTrait;
-    private LoggerInterface $logger;
+    private DummyRequestActivityLogger $logger;
     /**
-     * @param LogggerInterface $logger
+     * @param DummyRequestActivityLogger $logger
      */
-    public function __construct(LoggerInterface $logger){
-        $this->logger=$logger;
+    public function __construct(DummyRequestActivityLogger $logger)
+    {
+        $this->logger = $logger;
     }
     /**
      * @param Request $request
@@ -24,14 +26,7 @@ class LogActivityMiddleware
      */
     public function handle($request, Closure $next, ?string $type = null)
     {
-        /** @var User $user */
-        
-        
-
-        $this->logger->debug(
-            $this->identifyUserReresentation($request->user()). ' made a request to ' . ($type ?? 'unknown page'),
-            ['data placeholder']
-        );
+        $this->logger->logRequest($request, $type ?? 'unknown page');
 
         return $next($request);
     }
