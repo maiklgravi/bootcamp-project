@@ -28,3 +28,4 @@ Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet'
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');;
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
+Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
