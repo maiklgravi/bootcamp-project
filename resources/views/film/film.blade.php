@@ -42,6 +42,9 @@
             <div class="status_item">
                 Free
             </div>
+            <div class="button_more_blog">
+                <a href="{{route('filmArticle',['articlesId'=>$film->id])}}"><button  type="button" class="btn btn-danger ms-5 btn-lg">More</button></a>
+            </div>
 
             </div>
         </div>

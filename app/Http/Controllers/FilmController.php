@@ -23,6 +23,14 @@ class FilmController extends Controller
         return view('film.film',['films'=>$films , 'genre'=>$genre]);
 
     }
+    public function show ($articlesId) 
+    {   
+        $films = Film::findOrFail($articlesId);
+        return view('film_item' , [
+            'films' => $films , 
+            ]);
+
+    }
     public function recomanded () 
     {
         $films = Film::select([
