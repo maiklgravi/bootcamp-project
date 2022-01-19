@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Film extends Model
+class Film extends Model implements LoggableInterface
 {
     use HasFactory;
     public function videoName()
@@ -26,6 +26,20 @@ class Film extends Model
     public function filmsLike(){
         return $this->hasMany(FilmsLike::class);
     }
+    public function convertToLoggableString(): string{
+        return "Atriсle with id {$this->id}";
+    }
+    public function getData(): array{
+        return[
+            'id'=> $this->id,
+            'image'=>$this->image,
+            'description'=>$this->description,
+            'name'=>$this->name,
+            'status'=>$this->status,
+
+        ];
+    }
+    
     protected $fillable = array('image', 'description','date','name','status');
     
 
