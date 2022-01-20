@@ -28,7 +28,7 @@ class FilmController extends Controller
     public function show ($filmId, Request $request, ModelLogger $logger) 
     {   
         
-        $films = Film::findOrFail($filmId);
+        $film = Film::findOrFail($filmId);
         $logger->logModel($request->user(),$film );
         return view('film_item' , [
             'film' => $film , 
