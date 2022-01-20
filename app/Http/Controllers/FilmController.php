@@ -25,13 +25,13 @@ class FilmController extends Controller
         return view('film.film',['films'=>$films , 'genre'=>$genre]);
 
     }
-    public function show ($articlesId, Request $request, ModelLogger $logger) 
+    public function show ($filmId, Request $request, ModelLogger $logger) 
     {   
         
-        $film = Film::findOrFail($articlesId);
-        $logger->logModel($request->user(),$film );
+        $films = Film::findOrFail($filmId);
+        $logger->logModel($request->user(),$films );
         return view('film_item' , [
-            'films' => $film , 
+            'films' => $films , 
             ]);
 
     }
