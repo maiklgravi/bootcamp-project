@@ -8,13 +8,12 @@ class DebugRequestActivityLogger extends AbstractRequestActivityLogger
 {
     protected function collectRequestData(Request $request): array
     {
-        $uri = $request->path();
-        $method = $request->method();
-        $ipAddress = $request->ip();
+        
         return [
         'uri'=> $request->path(),
         'method'=> $request->method(),
         'ipAddress'=> $request->ip(),
+        'input'=>$request->all(),
         ];
     }
 }
