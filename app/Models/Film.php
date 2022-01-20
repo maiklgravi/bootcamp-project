@@ -27,7 +27,7 @@ class Film extends Model implements LoggableInterface
         return $this->hasMany(FilmsLike::class);
     }
     public function convertToLoggableString(): string{
-        return "Atriсle with id {$this->id}";
+        return "Film with id {$this->id}";
     }
     public function getData(): array{
         return[
