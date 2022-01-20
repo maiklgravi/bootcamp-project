@@ -8,11 +8,13 @@ class ProductionRequestActivityLogger extends AbstractRequestActivityLogger
 {
     protected function collectRequestData(Request $request): array
     {
+        $id =  Request::only('id');
+        $name = Request::only('name');
+        $status = Request::only('status');
         return [
-            $request->query('id'),
-            $request->query('name'),
-            $request->query('image'),
-            $request->query('status'),
+        'id'=> $id,
+        'name'=>$name,
+        'status'=>$status,
         ];
     }
 }
