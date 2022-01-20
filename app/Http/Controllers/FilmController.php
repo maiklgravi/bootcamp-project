@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Services\ModelLogger;
+use Psr\Log\LoggerInterface;
 
 class FilmController extends Controller
 {
@@ -23,11 +25,13 @@ class FilmController extends Controller
         return view('film.film',['films'=>$films , 'genre'=>$genre]);
 
     }
-    public function show ($articlesId) 
+    public function show ($filmId, Request $request, ModelLogger $logger) 
     {   
-        $films = Film::findOrFail($articlesId);
+        
+        $film = Film::findOrFail($filmId);
+        $logger->logModel($request->user(),$film );
         return view('film_item' , [
-            'films' => $films , 
+            'film' => $film , 
             ]);
 
     }
