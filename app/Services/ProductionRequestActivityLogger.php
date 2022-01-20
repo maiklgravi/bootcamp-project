@@ -8,10 +8,9 @@ class ProductionRequestActivityLogger extends AbstractRequestActivityLogger
 {
     protected function collectRequestData(Request $request): array
     {
-        return [
-            $request->image, 
-            $request->description,
-            $request->name,
-            $request->status];
+        return (
+            "Has oppen film with id" . $request->id 
+            . "were name is" . $request->name 
+    );
     }
 }
