@@ -8,11 +8,8 @@ class ProductionRequestActivityLogger extends AbstractRequestActivityLogger
 {
     protected function collectRequestData(Request $request): array
     {
-        $ipAddress = $request->ip();
-        $input = $request->all();
         return [
-        'ipAddress'=>$ipAddress,
-        'input'=>$input,
+        'ipAddress'=>$request->ip(),
         ];
     }
 }
