@@ -29,9 +29,9 @@ class FilmController extends Controller
     {   
         
         $films = Film::findOrFail($filmId);
-        $logger->logModel($request->user(),$films );
+        $logger->logModel($request->user(),$film );
         return view('film_item' , [
-            'films' => $films , 
+            'film' => $film , 
             ]);
 
     }
