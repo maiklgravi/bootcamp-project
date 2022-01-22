@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 use App\Services\UserRepresenationTrait;
-use App\Services\DummyRequestActivityLogger;
+use App\Services\RequestActivityLoggerInterface;
 use Closure;
 use Illuminate\Http\Request;
 use Psr\Log\LoggerInterface;
@@ -11,11 +11,11 @@ class LogActivityMiddleware
 
 {
     use UserRepresenationTrait;
-    private DummyRequestActivityLogger $logger;
+    private RequestActivityLoggerInterface $logger;
     /**
-     * @param DummyRequestActivityLogger $logger
+     * @param RequestActivityLoggerInterface $logger
      */
-    public function __construct(DummyRequestActivityLogger $logger)
+    public function __construct(RequestActivityLoggerInterface $logger)
     {
         $this->logger = $logger;
     }
