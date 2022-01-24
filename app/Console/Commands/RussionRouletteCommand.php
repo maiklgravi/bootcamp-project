@@ -47,12 +47,13 @@ class RussionRouletteCommand extends Command
         $lose = $this->cacheRepository->get('loseStatistic', []);
         $win[$user] = $win[$user] ?? 0;
         $lose[$user] = $lose[$user] ?? 0;
-        $random = random_int(0,5);
-        if ($random == 0) {
-        $this->info("you win");
+        $randombullet = random_int(1,6);
+        $drumstop = random_int(1,6);
+        if ($random == $drumstop) {
+        $this->info("you lose");
         $win[$user]++;  
         }else {    
-            $this->info("you lose");
+            $this->info("you win");
         $lose[$user]++;   
         };
         
