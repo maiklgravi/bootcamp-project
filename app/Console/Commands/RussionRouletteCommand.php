@@ -49,7 +49,7 @@ class RussionRouletteCommand extends Command
         $lose[$user] = $lose[$user] ?? 0;
         $randombullet = random_int(1,6);
         $drumstop = random_int(1,6);
-        if ($random == $drumstop) {
+        if ($randombullet == $drumstop) {
         $this->info("you lose");
         $win[$user]++;  
         }else {    
