@@ -56,9 +56,8 @@ class RussionRouletteCommand extends Command
             $this->info("you win");
         $lose[$user]++;   
         };
-        
-        $this->cacheRepository->set('WinStatistic', $win);
-        $this->cacheRepository->set('loseStatistic', $lose);
+        $this->cacheRepository->set('WinStatistic', $win, 60*60*24);
+        $this->cacheRepository->set('loseStatistic', $lose, 60*60*24);
                
         
     }
