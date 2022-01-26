@@ -23,7 +23,7 @@
 			  </li>
 			</ul>
 			<div class="p-2 personal_cabinet_button">
-				<a href="{{route('cabinet')}}" class="personal_cabinet_button">
+				<a href="{{route('user.private')}}" class="personal_cabinet_button">
 					<img src="https://img.icons8.com/pastel-glyph/40/000000/person-male--v3.png"/>
 					</a>
 				</div>

@@ -8,6 +8,9 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\PersonalCabinet;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +32,12 @@ Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
 Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
+Route::name('user.')->group(function(){
+    Route::view('/private', 'private')->middleware('auth')->name('private');
+    Route::get('/login', [LoginController::class,'index'])->name('login');
+    Route::post('/login',[LoginController::class,'login']);
+    Route::get('/logout', [LoginController::class,'loginout'])->name('logout');
+    Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
+    Route::post('/registration',[RegistrationController::class,'save'])->name('registration');
+
+});
