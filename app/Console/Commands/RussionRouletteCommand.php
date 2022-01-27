@@ -13,14 +13,14 @@ class RussionRouletteCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'game:name';
+    protected $signature = 'roullette:game';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'RussionRoulette game were youser win or lose.';
+    protected $description = 'RussionRoulette game were user win or lose.';
 
     /**
      * Create a new command instance.
@@ -42,7 +42,7 @@ class RussionRouletteCommand extends Command
     public function handle()
     {
         
-        $user = $this->ask("What you user id?");
+        $user = $this->ask("What is you name?");
         $win = $this->cacheRepository->get('WinStatistic', []);
         $lose = $this->cacheRepository->get('loseStatistic', []);
         $win[$user] = $win[$user] ?? 0;

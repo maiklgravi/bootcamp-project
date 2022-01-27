@@ -13,7 +13,7 @@ class ShowStatusCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'status:name';
+    protected $signature = 'roullette:statistic';
 
     /**
      * The console command description.
