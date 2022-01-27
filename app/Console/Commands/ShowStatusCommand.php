@@ -27,7 +27,7 @@ class ShowStatusCommand extends Command
      *
      * @return void
      */
-    public function __construct(CacheRepository $cacheRepository, ConfigRepository $configRepository)
+    public function __construct(CacheRepository $cacheRepository)
     {
         parent::__construct();
         $this->cacheRepository = $cacheRepository;
@@ -44,24 +44,23 @@ class ShowStatusCommand extends Command
         $statisticWin = $this->cacheRepository->get('WinStatistic', []);
         $statisticLose = $this->cacheRepository->get('LoseStatistic', []);
         $statisticBulletPosition = $this->cacheRepository->get('BulletStatistic', []);
+
         $table = [];
         foreach ($statisticWin as $key => $count ) {
             $table[] = [$key, $count ];
         }
         $this->table(['user', 'statisticWin' ], $table);
+
         $table = [];
         foreach ($statisticLose as $key => $count ) {
             $table[] = [$key, $count ];
         }
         $this->table(['user', 'statisticLose' ], $table);
+
         $table = [];
         foreach ($statisticBulletPosition as $key => $count ) {
             $table[] = [$key, $count ];
         }
-        $this->table(['randombullet', 'statisticBulletPosition'],$table);
-        $this->cacheRepository->set('WinStatistic', $statisticWin);
-        $this->cacheRepository->set('LoseStatistic', $statisticLose);
-        $this->cacheRepository->set('BulletStatistic', $statisticBulletPosition);
-               
+        $this->table(['randombullet', 'statisticBulletPosition'],$table);   
     }
 }

@@ -20,7 +20,7 @@ class RussionRouletteCommand extends Command
      *
      * @var string
      */
-    protected $description = 'RussionRoulette game were user win or lose.';
+    protected $description = 'RussionRoulette game where user win or lose.';
 
     /**
      * Create a new command instance.
