@@ -20,7 +20,7 @@ class ShowStatusCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Show status for win,lose and all Bullet position';
 
     /**
      * Create a new command instance.
@@ -41,24 +41,27 @@ class ShowStatusCommand extends Command
      */
     public function handle()
     {
-        $win = $this->cacheRepository->get('WinStatistic', []);
-        $lose = $this->cacheRepository->get('loseStatistic', []);
+        $statisticWin = $this->cacheRepository->get('WinStatistic', []);
+        $statisticLose = $this->cacheRepository->get('LoseStatistic', []);
+        $statisticBulletPosition = $this->cacheRepository->get('BulletStatistic', []);
         $table = [];
-
-
-        foreach ($win as $key => $count ) {
+        foreach ($statisticWin as $key => $count ) {
             $table[] = [$key, $count ];
         }
-
-        $this->table(['user', 'win' ], $table);
+        $this->table(['user', 'statisticWin' ], $table);
         $table = [];
-        foreach ($lose as $key => $count ) {
+        foreach ($statisticLose as $key => $count ) {
             $table[] = [$key, $count ];
         }
-    
-        $this->table(['user', 'lose' ], $table);
-        $this->cacheRepository->set('WinStatistic', $win);
-        $this->cacheRepository->set('loseStatistic', $lose);
+        $this->table(['user', 'statisticLose' ], $table);
+        $table = [];
+        foreach ($statisticBulletPosition as $key => $count ) {
+            $table[] = [$key, $count ];
+        }
+        $this->table(['randombullet', 'statisticBulletPosition'],$table);
+        $this->cacheRepository->set('WinStatistic', $statisticWin);
+        $this->cacheRepository->set('LoseStatistic', $statisticLose);
+        $this->cacheRepository->set('BulletStatistic', $statisticBulletPosition);
                
     }
 }
