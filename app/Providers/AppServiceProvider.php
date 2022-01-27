@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(RequestActivityLoggerInterface::class, function () {
             if (App::environment('production')) {
-                return $this->app->make(RequestActivityLoggerInterface::class);
+                return $this->app->make(ProductionRequestActivityLogger::class);
             } else {
                 return $this->app->make(DebugRequestActivityLogger::class);
             }
