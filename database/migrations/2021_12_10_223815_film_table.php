@@ -15,15 +15,17 @@ class FilmTable extends Migration
     public function up()
     {
         DB::statement("
-         CREATE TABLE `films` (
-          `id` int NOT NULL  AUTO_INCREMENT,
-          `image` varchar(100) NOT NULL,
-          `description` TEXT NOT NULL,
-          `date` DATE ,
-          `name` varchar(100) NOT NULL,
-          `status` INT,
-          `dislike` INT,
-          `like` INT,
+        CREATE TABLE `films` (
+            `id` int NOT NULL  AUTO_INCREMENT,
+            `image` varchar(100) NOT NULL,
+            `description` TEXT NOT NULL,
+            `date` DATE ,
+            `name` varchar(100) NOT NULL,
+            `status` INT,
+            `dislike` INT,
+            `like` INT,
+            `created_at` DATETIME,
+            `updated_at` DATETIME,
           PRIMARY KEY(id)
           )ENGINE=InnoDB
           ");
