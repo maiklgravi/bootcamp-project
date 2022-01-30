@@ -27,7 +27,6 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
 Route::get('/film',[FilmController::class,'index'])->name('film');
-Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet');
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');

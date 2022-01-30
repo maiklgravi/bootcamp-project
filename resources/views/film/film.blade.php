@@ -30,12 +30,11 @@
         </form>
     </div>
 </div>
-@foreach ($films as $film)
-<div class="row my-5 px-4">
-    <div class="col-sm-6 col-xl-3 bg-secondary d-block cinema_previu">
-        <div class="cinema_previu text_adaptiv">
-            <img src="assets/film_images/{{$film->image}}.jpg" class="image_width">
-            <div class="ms-2">
+
+<div class="row">
+    @foreach ($films as $film)
+        <div class="col-xl-3">
+            <img src="/storage/{{$film->image}}" class="image_width">
             <div class="fw-bold ">
                 {{$film->name}}
             </div>
@@ -45,11 +44,8 @@
             <div class="button_more_blog">
                 <a href="{{route('filmArticle',['articlesId'=>$film->id])}}"><button  type="button" class="btn btn-danger ms-5 btn-lg">More</button></a>
             </div>
-
-            </div>
-        </div>
     </div>
-</div>  
-@endforeach
 
+@endforeach
+</div>
 @endsection
