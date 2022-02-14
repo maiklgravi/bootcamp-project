@@ -10,6 +10,7 @@ use App\Http\Controllers\PersonalCabinet;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\JSHomeWorkController;
 
 
 /*
@@ -24,6 +25,8 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/jshome',[JSHomeWorkController::class,'index'])->name('jshome');
+Route::get('/jshome/cart',[JSHomeWorkController::class,'cart'])->name('cart');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
 Route::get('/film',[FilmController::class,'index'])->name('film');
@@ -38,5 +41,4 @@ Route::name('user.')->group(function(){
     Route::get('/logout', [LoginController::class,'loginout'])->name('logout');
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration',[RegistrationController::class,'save'])->name('registration');
-
 });
