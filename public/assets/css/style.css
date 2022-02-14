@@ -216,7 +216,9 @@ padding-top: 5px;
 .status_item{
 	color: rgb(86, 128, 8);
 }
-
+.center_size{
+    height: 70vh;
+}
 @media (max-width: 1200px){
 
     .image_width{

@@ -66,9 +66,6 @@ function cartConut(){
         cartelm.textContent = productCount
     }
 }
-cartConut()
-
-
 fetchProducts().then((products) => {
 
     products.forEach((product) => {
@@ -81,6 +78,6 @@ fetchProducts().then((products) => {
         ct.append(todo);
     });
 });
-
+cartConut()
 
 

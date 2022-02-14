@@ -59,11 +59,11 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" src="{{route('cart')}}"type="submit">
+                    <button class="btn btn-outline-dark" href="{{route('cart')}}" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                    </button></a>
                 </form>
             </div>
         </div>

@@ -16,18 +16,23 @@
 </head>
 
 <body>
+    <div class="card">
     <template card>
-        <tr class="card">
-            <th scope="row">#</th>
-            <td>Product <div id="productId"></div></td>
-            <td productCount></td>
-            <td><div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-success" onclick="removeProduct()">+</button>
-            <button type="button" class="btn btn-danger" onclick="addProduct()">-</button>
-            </div></td>
-            <td price></td>
+        <tr>
+            <tr>
+                <th scope="row"><img image src="" class="image_catr">
+                </th>
+                <td productName></td>
+                <td count></td>
+                <td><div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" button_cart_add onclick="addProduct(id)" class="btn btn-success">+</button>
+                    <button type="button" button_cart_remove onclick="removeProduct(id)" class="btn btn-danger">-</button>
+                  </div></td>
+                <td price></td>
+            </tr>
         </tr>
         </template>
+    </div>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
@@ -42,11 +47,12 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" src="{{route('cart')}}" type="submit">
+                    <a href="{{route('cart')}}"><button class="btn btn-outline-dark"  type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                    </button></a>
+
                 </form>
             </div>
         </div>
@@ -79,25 +85,10 @@
                       </tr>
                     </thead>
                     <tbody data-plase>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                        <tr class="card">
-                            <th scope="row">#</th>
-                            <td>Product <div id="productId"></div></td>
-                            <td productCount></td>
-                            <td><div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button type="button" class="btn btn-success" onclick="removeProduct()">+</button>
-                            <button type="button" class="btn btn-danger" onclick="addProduct()">-</button>
-                            </div></td>
-                            <td price></td>
-                        </tr>
+
                     </tbody>
                   </table>
-                  <button type="button" class="mt-5 btn btn-success">All claen</button>
+                  <button type="button" onclick="clear_cart()" class="mt-5 btn btn-success">All claen</button>
             </div>
         </div>
     </section>
