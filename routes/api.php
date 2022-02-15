@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/contact/submit', function () {
     return redirect(route('showContact'));
 })->name('sendContact');
+Route::put('/articles/{articleId}', [ArticleController::class, 'update'])->name('articles.put');
