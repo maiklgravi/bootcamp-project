@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function index(){
         $categories = BlogCategory::all();
         $request = request()->all();
-        $category = $request['category'] ?? $categories->first()->id; 
+        $category = $request['category'] ?? $categories->first()->id;
         $sort = $request['sort'] ?? 'DESC';
         $articles = Article::orderBy('created_at', $sort)->where('blog_category_id' ,'=' , $category)->paginate(5);
         $articles->appends(['sort' => $sort]);
@@ -25,4 +25,5 @@ class BlogController extends Controller
                 'category' => (int)$category
             ]]);
     }
+
 }

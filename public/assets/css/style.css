@@ -104,6 +104,16 @@ background-color: rgb(230, 92, 92);
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+.most_popular{
+    background-color: #fff;
+    margin-top: 15px;
+    padding-top: 25px;
+
+}
+.list-style{
+    list-style: none;
+    margin-left: 0;
+}
 .years_gener{
 	font-size: 14px;
 	margin-top: 5px;

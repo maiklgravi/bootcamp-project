@@ -2,7 +2,7 @@
     <div class="list_foter">
 	<div class="row">
     <div class="col-12 col-lg-6 text-center">
-        <p class="">Social</p> 
+        <p class="">Social</p>
         <div class="d-flex justify-content-center">
                     <div class="social_icon">
                                 <svg class="social_icon_item" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -26,3 +26,6 @@
     <div class="copiright">Copyright © 2021. All Rights Reserved</div>
 	</div>
 </div>
+<script src="/js/app.js"></script>
+<script src="/js/popular_article.js"></script>
+</body>

@@ -30,7 +30,7 @@
 
                 @else
                 <a href="{{route('user.private')}}" class="">
-					<buttontype="button" class="btn btn-primary">Log in</button>
+					<button type="button" class="btn btn-primary">Log in</button>
 					</a>
 
                 @endif

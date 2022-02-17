@@ -6,7 +6,6 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutAsController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\PersonalCabinet;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
@@ -23,7 +22,7 @@ use App\Http\Controllers\JSHomeWorkController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/articles/most-poupular',[ArticleController::class,'readMostPopularArticles'])->name('mostPopularArticles');
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/jshome',[JSHomeWorkController::class,'index'])->name('jshome');
 Route::get('/jshome/cart',[JSHomeWorkController::class,'cart'])->name('cart');
