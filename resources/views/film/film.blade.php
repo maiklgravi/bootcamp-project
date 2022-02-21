@@ -22,6 +22,7 @@
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <select class="form-select me-2" aria-label="Default select example">
+                <option value="all">All category</option>
                 @foreach ($genre as $genre)
                 <option value="{{$genre->id}}">{{$genre->name}}</option>
                 @endforeach
@@ -31,19 +32,25 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row  mb-5 p-3">
     @foreach ($films as $film)
-        <div class="col-xl-3">
-            <img src="/storage/{{$film->image}}" class="image_width">
-            <div class="fw-bold ">
-                {{$film->name}}
-            </div>
-            <div class="status_item">
-                Free
-            </div>
-            <div class="button_more_blog">
-                <a href="{{route('filmArticle',['articlesId'=>$film->id])}}"><button  type="button" class="btn btn-danger ms-5 btn-lg">More</button></a>
-            </div>
+        <div class="col-xl-3 mt-5">
+            <a class="stile_none" href="{{route('filmArticle',['articlesId'=>$film->id])}}">
+                <img src="/storage/{{$film->image}}" class="image_width"></a>
+                <div class="fw-bold black_text">
+                    {{$film->name}}
+                </div>
+                <div class="status_item">
+                    @if  ($film->status === 0)
+                    <div class="status_item_subscribe">
+                    Subscribe
+                    </div>
+                    @else
+                    <div class="status_item">
+                        Free
+                    </div>
+                    @endif
+                </div>
     </div>
 
 @endforeach

@@ -6,7 +6,6 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutAsController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\PersonalCabinet;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
