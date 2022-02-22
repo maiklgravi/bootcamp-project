@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
 
 class Article extends Model implements LoggableInterface
 {
@@ -20,6 +21,7 @@ class Article extends Model implements LoggableInterface
         'blog_category_id',
         'seo_title',
         'seo_description',
+        'view_count',
     ];
 
     public function getImageUrlAttribute(){
@@ -54,7 +56,7 @@ class Article extends Model implements LoggableInterface
 
         ];
     }
-    
 
-    
+
+
 }

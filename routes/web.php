@@ -6,8 +6,11 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutAsController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\PersonalCabinet;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\JSHomeWorkController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +23,25 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
+Route::get('/articles/most-poupular',[ArticleController::class,'readMostPopularArticles'])->name('mostPopularArticles');
+Route::post('/articles', [ArticleController::class, 'createArticle']);
+Route::get('/blog/article/create',[ArticleController::class,'formCreateArticle'])->name('formCreateArticle');
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/jshome',[JSHomeWorkController::class,'index'])->name('jshome');
+Route::get('/jshome/cart',[JSHomeWorkController::class,'cart'])->name('cart');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
 Route::get('/film',[FilmController::class,'index'])->name('film');
-Route::get('/personal_cabinet',[PersonalCabinet::class,'index'])->name('cabinet');
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
+
 Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
+Route::name('user.')->group(function(){
+    Route::view('/private', 'private')->middleware('auth')->name('private');
+    Route::get('/login', [LoginController::class,'index'])->name('login');
+    Route::post('/login',[LoginController::class,'login']);
+    Route::get('/logout', [LoginController::class,'loginout'])->name('logout');
+    Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
+    Route::post('/registration',[RegistrationController::class,'save'])->name('registration');
+});
