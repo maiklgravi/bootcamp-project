@@ -13,14 +13,14 @@ class RussionRouletteCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'game:name';
+    protected $signature = 'roullette:game';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'RussionRoulette game were youser win or lose.';
+    protected $description = 'RussionRoulette game where user win or lose.';
 
     /**
      * Create a new command instance.
@@ -41,23 +41,26 @@ class RussionRouletteCommand extends Command
      */
     public function handle()
     {
-        
-        $user = $this->ask("What you user id?");
-        $win = $this->cacheRepository->get('WinStatistic', []);
-        $lose = $this->cacheRepository->get('loseStatistic', []);
-        $win[$user] = $win[$user] ?? 0;
-        $lose[$user] = $lose[$user] ?? 0;
         $randombullet = random_int(1,6);
+        $user = $this->ask("What is you name?");
+        $statisticWin = $this->cacheRepository->get('WinStatistic', []);
+        $statisticLose = $this->cacheRepository->get('LoseStatistic', []);
+        $statisticBulletPosition = $this->cacheRepository->get('BulletStatistic', []);
+        $statisticWin[$user] = $statisticWin[$user] ?? 0;
+        $statisticLose[$user] = $statisticLose[$user] ?? 0;
+        $statisticBulletPosition[$randombullet] = $statisticBulletPosition[$randombullet] ?? 0;
         $drumstop = random_int(1,6);
         if ($randombullet == $drumstop) {
-        $this->info("you lose");
-        $win[$user]++;  
+            $statisticLose[$user]++;
+            $this->info("You lose");  
         }else {    
-            $this->info("you win");
-        $lose[$user]++;   
+            $statisticWin[$user]++; 
+            $this->info("You win");
         };
-        $this->cacheRepository->set('WinStatistic', $win, 60*60*24);
-        $this->cacheRepository->set('loseStatistic', $lose, 60*60*24);
+        $statisticBulletPosition[$randombullet]++;
+        $this->cacheRepository->set('WinStatistic', $statisticWin, 60*60*24);
+        $this->cacheRepository->set('LoseStatistic', $statisticLose, 60*60*24);
+        $this->cacheRepository->set('BulletStatistic', $statisticBulletPosition, 60*60*24);
                
         
     }

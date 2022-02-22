@@ -13,21 +13,21 @@ class ShowStatusCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'status:name';
+    protected $signature = 'roullette:statistic';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Show status for win,lose and all Bullet position';
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(CacheRepository $cacheRepository, ConfigRepository $configRepository)
+    public function __construct(CacheRepository $cacheRepository)
     {
         parent::__construct();
         $this->cacheRepository = $cacheRepository;
@@ -41,24 +41,26 @@ class ShowStatusCommand extends Command
      */
     public function handle()
     {
-        $win = $this->cacheRepository->get('WinStatistic', []);
-        $lose = $this->cacheRepository->get('loseStatistic', []);
+        $statisticWin = $this->cacheRepository->get('WinStatistic', []);
+        $statisticLose = $this->cacheRepository->get('LoseStatistic', []);
+        $statisticBulletPosition = $this->cacheRepository->get('BulletStatistic', []);
+
         $table = [];
-
-
-        foreach ($win as $key => $count ) {
+        foreach ($statisticWin as $key => $count ) {
             $table[] = [$key, $count ];
         }
+        $this->table(['user', 'statisticWin' ], $table);
 
-        $this->table(['user', 'win' ], $table);
         $table = [];
-        foreach ($lose as $key => $count ) {
+        foreach ($statisticLose as $key => $count ) {
             $table[] = [$key, $count ];
         }
-    
-        $this->table(['user', 'lose' ], $table);
-        $this->cacheRepository->set('WinStatistic', $win);
-        $this->cacheRepository->set('loseStatistic', $lose);
-               
+        $this->table(['user', 'statisticLose' ], $table);
+
+        $table = [];
+        foreach ($statisticBulletPosition as $key => $count ) {
+            $table[] = [$key, $count ];
+        }
+        $this->table(['randombullet', 'statisticBulletPosition'],$table);   
     }
 }

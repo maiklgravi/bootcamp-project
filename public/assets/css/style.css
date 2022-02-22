@@ -103,6 +103,9 @@ background-color: rgb(230, 92, 92);
 	width: 250px;
 	background-color: black;
 }
+.image_with{
+    width: 100%;
+}
 .list_searc_film{
 
 	max-width: 280px ;
@@ -110,6 +113,16 @@ background-color: rgb(230, 92, 92);
 	background-color: #fff;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+.most_popular{
+    background-color: #fff;
+    margin-top: 15px;
+    padding-top: 25px;
+
+}
+.list-style{
+    list-style: none;
+    margin-left: 0;
 }
 .years_gener{
 	font-size: 14px;
@@ -223,7 +236,9 @@ padding-top: 5px;
 .status_item{
 	color: rgb(86, 128, 8);
 }
-
+.center_size{
+    height: 70vh;
+}
 @media (max-width: 1200px){
 
     .image_width{
