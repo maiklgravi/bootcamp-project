@@ -3,7 +3,7 @@
 <div class="min-vh-100">
         <div class="row bg-dark">
             <div class="col-4 ms-5 mt-2 mb-4">
-            <img src="/assets/film_images/{{$film->image}}.jpg">
+            <img src="/storage/{{$film->image}}">
             </div>
             <div class="col-6 name_film fs-1 w-70">
                 {{ $film->name }}

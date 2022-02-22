@@ -1,8 +1,15 @@
 body{
 	background-color: rgb(211, 205, 205);
 }
-
-
+.black_text{
+    color: #000;
+}
+.stile_none{
+    text-decoration: none;
+}
+.status_item_subscribe{
+    color:red;
+}
 .name_film{
 	color: #fff;
 }

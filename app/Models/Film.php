@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 
 class Film extends Model implements LoggableInterface
 {
@@ -39,9 +41,9 @@ class Film extends Model implements LoggableInterface
 
         ];
     }
-    
+
     protected $fillable = array('image', 'description','date','name','status');
-    
+
 
     protected $table = 'films';
 }
