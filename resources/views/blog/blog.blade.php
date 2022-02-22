@@ -1,7 +1,8 @@
 @extends('layout')
 @section('content')
     <div class="searc_bar container-fluid">
-        <form class="d-flex" method="GET" action="">
+        <div class="row">
+            <div class="col-9"><form class="d-flex" method="GET" action="">
             <select class="form-select me-2" name="category">
                 @foreach ($categories as $category)
                 <option value="{{$category->id}}"
@@ -14,9 +15,13 @@
                 <option value="ASC" {{ $filter['sort'] === 'ASC' ? 'selected' : ''}}>ASC</option>
             </select>
             <button class="btn btn-danger" type="submit">Apply sort</button>
-        </form>
+        </form></div>
+            <div class="col-3"><a href="/blog/article/create" class="btn btn-primary">Create article</a></div>
+        </div>
+
     </div>
     <div class="blog-search">
+
         <div class="container"> {{ $articles->links() }}</div>
     <div class="row">
         <div class="col-9">
@@ -58,5 +63,6 @@
 
 
 <div class="blog-search">
-
+    <script src="/js/app.js"></script>
+    <script src="/js/popular_article.js"></script>
 @endsection

@@ -22,7 +22,10 @@ use App\Http\Controllers\JSHomeWorkController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/articles/most-poupular',[ArticleController::class,'readMostPopularArticles'])->name('mostPopularArticles');
+Route::post('/articles', [ArticleController::class, 'createArticle']);
+Route::get('/blog/article/create',[ArticleController::class,'formCreateArticle'])->name('formCreateArticle');
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/jshome',[JSHomeWorkController::class,'index'])->name('jshome');
 Route::get('/jshome/cart',[JSHomeWorkController::class,'cart'])->name('cart');
@@ -32,6 +35,7 @@ Route::get('/film',[FilmController::class,'index'])->name('film');
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
+
 Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
 Route::name('user.')->group(function(){
     Route::view('/private', 'private')->middleware('auth')->name('private');

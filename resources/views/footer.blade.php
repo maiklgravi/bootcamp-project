@@ -26,6 +26,5 @@
     <div class="copiright">Copyright © 2021. All Rights Reserved</div>
 	</div>
 </div>
-<script src="/js/app.js"></script>
-<script src="/js/popular_article.js"></script>
+
 </body>
