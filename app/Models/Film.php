@@ -37,7 +37,8 @@ class Film extends Model implements LoggableInterface
             'image'=>$this->image,
             'description'=>$this->description,
             'name'=>$this->name,
-            'status'=>$this->status,
+            'public_availability'=>$this->public_availability,
+            'wiew_count'=>$this->wiew_count,
 
         ];
     }

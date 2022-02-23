@@ -16,8 +16,9 @@ class HomeController extends Controller
             'description',
             'date',
             'name',
-            'status',])
+            'public_availability',])
             ->orderBy('like','DESC')->limit(4)->get();
-        return view('home.home',['films'=>$films,]);
+
     }
+
 }

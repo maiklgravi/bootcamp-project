@@ -26,11 +26,11 @@ class FilmController extends Controller
         $films = $film->getFilmBySearch($request);
         return view('film.film',['films'=>$films , 'genre'=>$genre]);
     }
-    public function show ($filmId, Request $request, ModelLogger $logger)
+    public function show ($filmId, Request $request)
     {
 
         $film = Film::findOrFail($filmId);
-        if ($film->status === 0 ){
+        if ($film->public_availability === 0 ){
             if(Auth::check()){
                 $user = Auth::user();
                 $statusSubscribe = false;
@@ -43,8 +43,9 @@ class FilmController extends Controller
 
             }
 
+        }else{
+            $statusSubscribe = false;
         }
-        $logger->logModel($request->user(),$film );
         return view('film_item' , [
             'film' => $film ,
             'statusSubscribe'=> $statusSubscribe,
@@ -60,7 +61,7 @@ class FilmController extends Controller
             'description',
             'date',
             'name',
-            'status',])
+            'public_availability',])
             ->orderBy('like','DESC')->limit(4)->get();
         return view('film.film',['films'=>$films]);
 
