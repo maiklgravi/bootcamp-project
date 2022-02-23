@@ -1,8 +1,11 @@
 @extends('layout')
 @section('content')
 <div class="helou_tab">
-	Welcom Andrei
-	
+
+
+
+	Welcome {{ $user->name }}
+
 </div>
 <div class="cabinet_status">
 	Your status: active

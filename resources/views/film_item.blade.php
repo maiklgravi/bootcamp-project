@@ -7,6 +7,9 @@
             </div>
             <div class="col-6 name_film fs-1 w-70">
                 {{ $film->name }}
+                @if ($statusSubscribe)
+                    I am
+                @endif
                 <div class="col-12 name_film fs-6">
                 <div class="mt-2"> Country: Canada</div>
                 <div class="mt-2">Screenwriter: Boon Leen</div>

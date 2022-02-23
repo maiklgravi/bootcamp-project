@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Payment;
 use App\Services\ModelLogger;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class FilmController extends Controller
 {
@@ -28,10 +30,26 @@ class FilmController extends Controller
     {
 
         $film = Film::findOrFail($filmId);
+        if ($film->status === 0 ){
+            if(Auth::check()){
+                $user = Auth::user();
+                $statusSubscribe = false;
+                $payments = Payment::select()->where('id_user' ,'=' , $user->id)->get();
+                foreach ($payments as $payment) {
+                    if ($payment->date_payment = Carbon::now()->addMonth($payment->month) ){
+                         $statusSubscribe = true;
+                    }
+                }
+
+            }
+
+        }
         $logger->logModel($request->user(),$film );
         return view('film_item' , [
             'film' => $film ,
+            'statusSubscribe'=> $statusSubscribe,
             ]);
+
 
     }
     public function recomanded ()

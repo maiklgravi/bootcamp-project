@@ -10,7 +10,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JSHomeWorkController;
-
+use App\Http\Controllers\PrivateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +38,9 @@ Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.se
 
 Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
 Route::name('user.')->group(function(){
-    Route::view('/private', 'private')->middleware('auth')->name('private');
+    Route::get('/private', [PrivateController::class, 'showWelcomePage'])
+        ->middleware('auth')
+        ->name('private');
     Route::get('/login', [LoginController::class,'index'])->name('login');
     Route::post('/login',[LoginController::class,'login']);
     Route::get('/logout', [LoginController::class,'loginout'])->name('logout');
