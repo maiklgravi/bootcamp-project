@@ -16,7 +16,10 @@
             </select>
             <button class="btn btn-danger" type="submit">Apply sort</button>
         </form></div>
-            <div class="col-3"><a href="/blog/article/create" class="btn btn-primary">Create article</a></div>
+        @if ($auth)
+           <div class="col-3"><a href="/blog/article/create" class="btn btn-primary">Create article</a></div>
+        @endif
+
         </div>
 
     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Payment;
+use App\Models\PreiewFilmsBaner;
 use App\Services\ModelLogger;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,8 @@ class FilmController extends Controller
     {
 
         $film = Film::findOrFail($filmId);
+        $film->view_count++;
+        $film->save();
         if ($film->public_availability === 0 ){
             if(Auth::check()){
                 $user = Auth::user();

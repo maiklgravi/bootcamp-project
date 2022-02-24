@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FilmInfo extends Model
+class PreiewsFilmsBaner extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $table='film_info';
-    protected $fillable = array('duration','actors','screenwriter');
-    public function film()
-    {
-
+    protected $fillable = [
+        'id',
+        'film_id',
+        'image'
+    ];
+    public  function filmsrefirenses(){
         return $this->belongsTo(Film::class);
-
     }
-
 }

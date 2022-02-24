@@ -9,28 +9,47 @@ use App\Models\BlogCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
 
 class ArticleController extends Controller
 {
-    public function show ($articlesId, Request $request, ModelLogger $logger){
+    public function show ($articlesId){
+
         $article = Article::findOrFail($articlesId);
+        if($auth = Auth::check()){
+            $user = Auth::user();
+            if($user->id === $article->author_id){
+                $property = true;
+            }else{
+                $property = false;
+            }
+        }else{
+            $property = false;
+        }
+
         $article->view_count++;
         $article->save();
         $comments =  $article->comments()->paginate(2);
-        $logger->logModel($request->user(),$article );
 
         return view('article.article' , [
             'article' => $article ,
             'comments' => $comments ,
-            'articlesId' => $articlesId]);
+            'articlesId' => $articlesId,
+            'property'=>$property]);
     }
     public function formCreateArticle (){
         $categories = BlogCategory::all();
 
         return view('blog.createArticle',[
+            'categories' => $categories,
+        ]);
+    }
+    public function formEditArticle (){
+        $categories = BlogCategory::all();
+        return view('article.edit_article',[
             'categories' => $categories,
         ]);
     }
@@ -143,6 +162,7 @@ class ArticleController extends Controller
 
         return $this->responseFactory->json(['id' => $article->id], 201);
     }
+
 
 
     /**

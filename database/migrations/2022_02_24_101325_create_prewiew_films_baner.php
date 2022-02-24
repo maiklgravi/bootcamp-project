@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Dislike extends Migration
+class CreatePrewiewFilmsBaner extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class Dislike extends Migration
      */
     public function up()
     {
-        Schema::create('dislike', function (Blueprint $table) {
+        Schema::create('prewiews_films_baners', function (Blueprint $table) {
             $table->id();
-            $table->integer('film_id');
+            $table->string('image');
+            $table->integer('film_id')->unique();
             $table->foreign('film_id')->references('id')->on('films')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
+
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class Dislike extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dislike');
+        Schema::dropIfExists('prewiews_films_baners');
     }
 }

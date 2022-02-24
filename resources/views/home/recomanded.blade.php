@@ -5,7 +5,7 @@
         {{$film->name}}
     </div>
     <div class="status_item">
-        @if  ($film->status === 0)
+        @if  ($film->public_availability === 0)
         <div class="status_item_subscribe">
         Subscribe
         </div>

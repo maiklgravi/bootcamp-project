@@ -19,6 +19,7 @@
     <div class="form-group">
         <button class="btn btn-primary mb-3" type="submit" name="sendMe" value="1">In</button>
     </div>
-</form>
 
+</form>
+<a href="/registration"><button class="btn btn-primary mb-3">Registration</button></a>
 @endsection

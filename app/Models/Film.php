@@ -22,6 +22,10 @@ class Film extends Model implements LoggableInterface
     {
         return $this->belongsToMany(Genre::class);
     }
+    public function filmInfo()
+    {
+        return $this->hasOne(FilmInfo::class);
+    }
     public function filmsComments(){
         return $this->hasMany(FilmsComment::class);
     }
@@ -38,7 +42,7 @@ class Film extends Model implements LoggableInterface
             'description'=>$this->description,
             'name'=>$this->name,
             'public_availability'=>$this->public_availability,
-            'wiew_count'=>$this->wiew_count,
+            'view_count'=>$this->view_count,
 
         ];
     }
