@@ -9,24 +9,40 @@ use App\Models\BlogCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
 class ArticleController extends Controller
 {
-    public function show ($articlesId, Request $request, ModelLogger $logger){
+    public function show ($articlesId){
+
         $article = Article::findOrFail($articlesId);
+        if($auth = Auth::check()){
+            $user = Auth::user();
+            if($user->id === $article->author_id){
+                $property = true;
+            }else{
+                $property = false;
+            }
+        }else{
+            $property = false;
+        }
+
         $article->view_count++;
         $article->save();
         $comments =  $article->comments()->paginate(2);
-        $logger->logModel($request->user(),$article );
 
         return view('article.article' , [
             'article' => $article ,
             'comments' => $comments ,
-            'articlesId' => $articlesId]);
+            'articlesId' => $articlesId,
+            'property'=>$property]);
     }
+
+
+
     public function formCreateArticle (){
         $categories = BlogCategory::all();
 
@@ -34,6 +50,21 @@ class ArticleController extends Controller
             'categories' => $categories,
         ]);
     }
+
+
+
+
+    public function formEditArticle ($id){
+        $categories = BlogCategory::all();
+        return view('article.edit_article',[
+            'categories' => $categories,
+            'idArticle' => $id
+        ]);
+    }
+
+
+
+
      /** @var ResponseFactory */
      private $responseFactory;
 
@@ -71,6 +102,10 @@ class ArticleController extends Controller
 
          return $this->responseFactory->json($articlesArray);
      }
+
+
+
+
       /**
      * Read list of all articles
      *
@@ -142,6 +177,37 @@ class ArticleController extends Controller
         ]);
 
         return $this->responseFactory->json(['id' => $article->id], 201);
+    }
+     /**
+     * Creates new article from provided data
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function editArticle(Request $request,$id): JsonResponse
+    {
+        $user = Auth::user();
+        $request->validate([
+            'title' => ['required', 'string', 'max:255', 'min:10'],
+            'description' => ['string', 'min:15'],
+            'category' => [ 'numeric'],
+            'image' => ['image'],
+        ]);
+
+        $article = Article::find($id);
+        $article->title =  $request->input('title');
+        $article->description =  $request->input('description');
+        $article->author_id =  $user->id;
+        $article->excerpt =  $request->input('description');
+        $article->blog_category_id =  $request->input('category');
+        $article->seo_title =  $request->input('title');
+        $article->seo_description =  $request->input('description');
+        $article->image =  $request->file('image')->store('/','public');
+        $article->save();
+
+
+        return $this->responseFactory->json(['id' => $article->id], 200);
     }
 
 

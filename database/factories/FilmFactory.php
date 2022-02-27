@@ -19,8 +19,9 @@ class FilmFactory extends Factory
             'name' => $this->faker->unique()->name(),
             'description' => $this->faker->paragraph(),
             'image' => $imageName,
+            'date'=>$this->faker->date(),
             'description'=>$this->faker->sentence(),
-            'status'=>$this->faker->randomElement([
+            'public_availability'=>$this->faker->randomElement([
                 '0',
                 '1'
             ]),

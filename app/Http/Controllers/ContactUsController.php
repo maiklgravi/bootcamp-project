@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Mail\Message;
 use App\Services\ContactUsMailer;
-
+use Illuminate\Support\Facades\Log;
 
 class ContactUsController extends Controller
 {
@@ -19,9 +19,9 @@ class ContactUsController extends Controller
 
     public function send(ContactUsRequest $request,ContactUsMailer $mailer): RedirectResponse
     {
-       
+
         $data = $request->validated();
-        \Log::debug('test', $data);
+        Log::debug('test', $data);
         $mailer->send($data);
 
         return redirect()->route('contactUs')->withInput($data);

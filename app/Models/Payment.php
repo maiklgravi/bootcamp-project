@@ -9,7 +9,7 @@ use App\Models\User;
 class Payment extends Model
 {
     use HasFactory;
-    protected $fillable = array('id_user', 'month', 'date_payment','payment','value');
+    protected $fillable = array('id_user', 'month', 'date_payment','value');
     protected $table = 'payment';
     public function userpayment()
     {

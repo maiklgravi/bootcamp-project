@@ -31,6 +31,6 @@ class Dislike extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fildislikems_like');
+        Schema::dropIfExists('dislike');
     }
 }

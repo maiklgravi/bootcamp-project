@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class FilmInfo extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table='film_info';
-    protected $fillable = array('film_id','duration','actors','screenwriter');
+    protected $fillable = array('duration','actors','screenwriter');
     public function film()
     {
-        return $this->hasOne(Film::class);
+
+        return $this->belongsTo(Film::class);
+
     }
-    
+
 }

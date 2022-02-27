@@ -6,16 +6,28 @@
       <img class="imaiges_blog" src="/storage/{{$article->image}}" alt="">
 		</div>
 		<div class="col-6 name_film fs-1 w-70">
-			{{$article->title}}
+            <div class="row">
+                <div class="col-9">
+                {{$article->title}}
+                </div>
+                <div class="col-3">
+                    @if ($property === true)
+                    <button type="button" class="btn btn-danger text_adaptiv ms-5 btn-lg">Edit</button></div>
+                    @endif
+
+
+                </div>
+                </div>
+            </div>
             <div class="col-12 name_film fs-5">Category: {{$article->category}}</div>
             <div class="col-12 name_film fs-5">Descrition: {{$article->description}}</div>
             <div class="col-12 name_film fs-5">Name autor: {{$article->user->name}}</div>
             <div class="col-12 name_film fs-5">Tags: #new</div>
             <div class="col-12 name_film mt-5 fs-5"></div>
-			
+
 		</div>
 	</div>
-	
+
 </div>
 <div class="comments">
     <div class="meassag_bar container pt-5">
@@ -36,10 +48,8 @@
     </div>
     <div class="comments">
         <div class="comment_title">
-Comments {{$article->comments()->count()}}
+            Comments {{$article->comments()->count()}}
         </div>
-
-
 
         @foreach ($comments as $comment)
 
@@ -52,7 +62,7 @@ Comments {{$article->comments()->count()}}
     {{$comment->author_email}}/{{$comment->created_at}}
     </div>
   </div>
-  
+
   </div>
     </div>
     {{ $comment->name }}
