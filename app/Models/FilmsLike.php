@@ -9,15 +9,15 @@ class FilmsLike extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'status',
         'film_id',
         'user_id'
     ];
+    protected $table = 'films_like';
     public  function filmsLike(){
         return $this->belongsTo(Film::class);
     }
     public  function filmsLikeUser(){
         return $this->belongsTo(User::class);
     }
-    
+
 }

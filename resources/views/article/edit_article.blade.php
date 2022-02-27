@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="container mt-5 m-5 p-5 ">
-<h1>Create article</h1>
+<h1>Edit article</h1>
 
 <form id="create-article-form">
     <div class="alert alert-danger" id="alert" role="alert" hidden>
@@ -13,6 +13,9 @@
     <label for="titleInput" class="form-label">Tiltle</label>
     <input type="text" class="form-control" id="tiitleInput" placeholder="Article title">
     </div>
+    <div class="mb-3">
+        <input type="number" class="form-control" id="article_id" value="{{ $idArticle }}" hidden>
+        </div>
     <div class="mb-3">
         <label for="author_id" class="form-label">Author id</label>
         <input type="number" class="form-control" id="autor_id" placeholder="Author id">
@@ -64,5 +67,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="/js/app.js"></script>
-<script src="/assets/js/careateArticle.js"></script>
+<script src="/assets/js/editArticle.js"></script>
 @endsection

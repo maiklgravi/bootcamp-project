@@ -19,12 +19,12 @@
 </div>
 <div class="container">
     <div class="searc_bar">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <select class="form-select me-2" aria-label="Default select example">
-                <option value="all">All category</option>
+        <form class="d-flex" >
+            <input class="form-control me-2" type="search" placeholder="Search" name="name" aria-label="Search">
+            <select class="form-select me-2" name="category" aria-label="Default select example">
+                <option value="">All category</option>
                 @foreach ($genre as $genre)
-                <option value="{{$genre->id}}">{{$genre->name}}</option>
+                <option @if($genreSelected === $genre->id ) selected @endif value="{{$genre->id}}">{{$genre->name}}</option>
                 @endforeach
             </select>
             <button class="btn btn-danger" type="submit">Search</button>
@@ -41,7 +41,7 @@
                     {{$film->name}}
                 </div>
                 <div class="status_item">
-                    @if  ($film->status === 0)
+                    @if  ($film->public_availability === 0)
                     <div class="status_item_subscribe">
                     Subscribe
                     </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JSHomeWorkController;
+use App\Http\Controllers\LikeDislikeFilmController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PrivateController;
 
@@ -25,8 +26,11 @@ use App\Http\Controllers\PrivateController;
 */
 
 Route::get('/articles/most-poupular',[ArticleController::class,'readMostPopularArticles'])->name('mostPopularArticles');
+Route::get('/film/{id}/like', [LikeDislikeFilmController::class, 'getInfo']);
 Route::post('/articles', [ArticleController::class, 'createArticle']);
+Route::post('/film/{id}/like', [LikeDislikeFilmController::class, 'makeLikeOrDislike']);
 Route::get('/blog/article/{articlesId}/edit',[ArticleController::class,'formEditArticle'])->name('editArticle');
+Route::post('/article/{articlesId}',[ArticleController::class,'editArticle']);
 Route::get('/blog/article/create',[ArticleController::class,'formCreateArticle'])->name('formCreateArticle');
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/jshome',[JSHomeWorkController::class,'index'])->name('jshome');
@@ -34,7 +38,7 @@ Route::get('/jshome/cart',[JSHomeWorkController::class,'cart'])->name('cart');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/my_article',[BlogController::class,'myArticle'])->name('myArticle');
 Route::get('/about_us',[AboutAsController::class,'index'])->name('about_us');
-Route::get('/film',[FilmController::class,'index'])->name('film');
+Route::get('/films',[FilmController::class,'index'])->name('film');
 Route::get('/blog/article/{articlesId}',[ArticleController::class,'show'])->name('blogArticle');
 Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->middleware('log.activity:sendContactUs');
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
