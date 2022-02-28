@@ -33,6 +33,7 @@
 </div>
 
 <div class="row  mb-5 p-3">
+    <div class="container"> {{$films->links()}}</div>
     @foreach ($films as $film)
         <div class="col-xl-3 mt-5">
             <a class="stile_none" href="{{route('filmArticle',['articlesId'=>$film->id])}}">
@@ -54,5 +55,6 @@
     </div>
 
 @endforeach
+<div class="container"> {{ $films->links() }}</div>
 </div>
 @endsection

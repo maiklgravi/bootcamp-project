@@ -12,8 +12,10 @@
                 </div>
                 <div class="col-3">
                     @if ($property === true)
-                    <button type="button" class="btn btn-danger text_adaptiv ms-5 btn-lg">Edit</button></div>
+                   <a href="/blog/article/{{ $article->id }}/delete"> <button type="button" class="btn btn-danger text_adaptiv ms-5 btn-lg">Delete</button></div></a>
+                   <a href="/blog/article/{{ $article->id }}/edit"><button type="button" class="btn btn-danger text_adaptiv ms-5 btn-lg">Edit</button></div></a>
                     @endif
+
 
 
                 </div>
@@ -22,8 +24,6 @@
             <div class="col-12 name_film fs-5">Category: {{$article->category}}</div>
             <div class="col-12 name_film fs-5">Descrition: {{$article->description}}</div>
             <div class="col-12 name_film fs-5">Name autor: {{$article->user->name}}</div>
-            <div class="col-12 name_film fs-5">Tags: #new</div>
-            <div class="col-12 name_film mt-5 fs-5"></div>
 
 		</div>
 	</div>
@@ -31,19 +31,19 @@
 </div>
 <div class="comments">
     <div class="meassag_bar container pt-5">
-        <div class="mb-3  ">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-          <div class="mb-3">
+
+        <form action="/blog/article/{{ $article->id }}/comment" method="POST" name="make_comment">
+          <div class="mb-3">@csrf
             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
           </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Send comment</button>
           </div>
+        </form>
     </div>
     <div>
+
 
     </div>
     <div class="comments">

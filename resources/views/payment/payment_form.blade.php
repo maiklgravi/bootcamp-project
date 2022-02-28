@@ -5,13 +5,30 @@
         <form action="{{ route('paymentSubscribe') }}" method="POST" name="payments_subscribe">
         <p class="h8 py-3">Payment Details</p>
         <div class="row gx-3">
+            <div class="alert alert-warning" role="alert">
+
+                <ul>
+
+                <li>If you have subscribe remaining time  has not added to this subscribe.</li>
+
+                </ul>
+              </div>
             <div class="col-12">
+             @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="input-group mb-3">
                 <label class="input-group-text" for="mouthSubscribe">Options</label>
                 <select class="form-select" name="mouthSubscribe" id="mouthSubscribe">
-                  <option selected value=1>One mounth</option>
-                  <option value=6>Six mounth</option>
-                  <option value=12>Twelve mounth</option>
+                  <option selected value=1>One mounth (4$)</option>
+                  <option value=6>Six mounth  (20$)</option>
+                  <option value=12>Twelve mounth  (30$)</option>
                 </select>
               </div></div>
             <div class="col-12">

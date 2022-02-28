@@ -32,14 +32,24 @@ class PaymentController extends Controller
                 'expiry' => ['required'],
                 'crv' => ['required','min:3','max:3'],
             ]);
-            $mounth = $request->mouthSubscribe;
+            if((int)$request->mouthSubscribe === 1){
+                $value = 4;
+            }
+            if((int)$request->mouthSubscribe === 6){
+                $value = 20;
+            }
+            if((int)$request->mouthSubscribe === 12){
+                $value = 30;
+            }
+
             DB::table('payment')->insertOrIgnore([
                 ['id_user'=>$user->id,
                 'month'=>$request->mouthSubscribe,
                 'date_payment'=>Carbon::now(),
-                'value'=>5 ]]);
+                'value'=> $value]]);
+                return redirect('/private');
         }else{
-
+            return route('user.login');
         }
         }
 }

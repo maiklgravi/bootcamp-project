@@ -29,31 +29,65 @@
         </button>
         <button type="button" onclick="like({{ $film->id }})" class="btn btn-success"><img src="/like.png" width="20vw"><div id="like"> {{ $film->like }} </div></button>
       </div>
+@if ($action==='login')
+<a href="/login"><button class="btn btn-primary mb-3">Login</button></a>
 
-    <video class="min-vw-100" controls>
-        <source src="/01.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-      </video>
+@endif
+@if ($action==='payment')
+<a href="{{route('paymnetForm')}}"><button class="btn btn-primary mb-3">Make payment</button></a>
+
+@endif
+@if ($action==='show')
+<video class="min-vw-100" controls>
+    <source src="/{{ $filmVideo->name }}" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+    </div>
+</div>
+@endif
+
+
+    <div class="comments">
+        @if ($auth)
+            <div class="meassag_bar container pt-5">
+
+            <form action="/film/{{ $film->id }}/comment" method="POST" name="make_comment">
+              <div class="mb-3">@csrf
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Send comment</button>
+              </div>
+            </form>
         </div>
+        @endif
+
+        <div class="comments">
+            <div class="comment_title">
+                Comments:
+            </div>
+
+            @foreach ($comments as $comment)
+
+        <div class="comments_item mt-5 container">
+        <div class="comment_article">
+          {{$comment->message}}
+        </div>
+        <div class="autor_name_comment">
+        </div>
+        {{$comment->author_email}}
+        {{$comment->created_at}}
+        </div>
+      </div>
+
+      </div>
+        </div>
+        {{ $comment->name }}
+            @endforeach
+            <div class="container"> {{ $comments->links() }}</div>
     </div>
 
-<div class="comments">
-    <div class="meassag_bar container pt-5">
-        <div class="mb-3  ">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Send comment</button>
-          </div>
-    </div>
-    <div>
-
-    </div>
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">

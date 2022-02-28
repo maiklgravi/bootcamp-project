@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-9"><form class="d-flex" method="GET" action="">
             <select class="form-select me-2" name="category">
+                <option value="">All category</option>
                 @foreach ($categories as $category)
                 <option value="{{$category->id}}"
                     {{ $filter['category'] === $category->id ? 'selected' : ''}}>{{$category->name}}</option>
@@ -17,6 +18,7 @@
             <button class="btn btn-danger" type="submit">Apply sort</button>
         </form></div>
         @if ($auth)
+        <div class="col-3"><a href="/my_article" class="btn btn-primary">My article</a></div>
            <div class="col-3"><a href="/blog/article/create" class="btn btn-primary">Create article</a></div>
         @endif
 
