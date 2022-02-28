@@ -29,6 +29,12 @@ class ArticleController extends Controller
         }else{
             $property = false;
         }
+        if(Auth::check()){
+            $auth = true;
+        }else{
+            $auth = false;
+        }
+        $category = BlogCategory::where('id','=',$article->blog_category_id)->get();
 
         $article->view_count++;
         $article->save();
@@ -36,6 +42,8 @@ class ArticleController extends Controller
 
         return view('article.article' , [
             'article' => $article ,
+            'auth'=>$auth,
+            'category'=>$category[0]->name,
             'comments' => $comments ,
             'articlesId' => $articlesId,
             'property'=>$property]);

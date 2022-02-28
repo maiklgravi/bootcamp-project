@@ -1,60 +1,47 @@
 @extends('layout')
 @section('content')
-<div class="gener_select container ">
-    <div class="gener_select_items">
-        <div class="gener_select_item">Comedy</div>
-        <div class="gener_select_item">Dramma</div>
-        <div class="gener_select_item">Adventure</div>
-        <div class="gener_select_item">Detective</div>
-        <div class="gener_select_item">Thriller</div>
-    </div>
-    <div class="gener_select_items">
-        <div class="gener_select_item">Mystic</div>
-        <div class="gener_select_item">Historical</div>
-        <div class="gener_select_item">Military</div>
-        <div class="gener_select_item">Horrors</div>
-        <div class="gener_select_item">Fantasy</div>
-    </div>
-
-</div>
-<div class="container">
-    <div class="searc_bar">
-        <form class="d-flex" >
-            <input class="form-control me-2" type="search" placeholder="Search" name="name" aria-label="Search">
-            <select class="form-select me-2" name="category" aria-label="Default select example">
+<div class="row p-0 m-0">
+    <form class="d-flex p-0 m-0" >
+            <div class="d-flex m-5">
+            <input class="form-control me-2 height_form" type="search" placeholder="Search" name="name" aria-label="Search">
+            <select class="form-select me-2 height_form" name="category" aria-label="Default select example">
                 <option value="">All category</option>
                 @foreach ($genre as $genre)
                 <option @if($genreSelected === $genre->id ) selected @endif value="{{$genre->id}}">{{$genre->name}}</option>
                 @endforeach
             </select>
-            <button class="btn btn-danger" type="submit">Search</button>
+            <button class="btn  text_size btn-primary" type="submit">Search</button></div>
+
         </form>
-    </div>
 </div>
 
-<div class="row  mb-5 p-3">
-    <div class="container"> {{$films->links()}}</div>
-    @foreach ($films as $film)
+
+<div class="row p-0 m-0">
+    <div class="text_size margin_left">
+        {{$films->links()}}</div>
+
+            @foreach ($films as $film)
         <div class="col-xl-3 mt-5">
             <a class="stile_none" href="{{route('filmArticle',['articlesId'=>$film->id])}}">
                 <img src="/storage/{{$film->image}}" class="image_width"></a>
-                <div class="fw-bold black_text">
+                <div class="fw-bold black_text text_size">
                     {{$film->name}}
                 </div>
                 <div class="status_item">
                     @if  ($film->public_availability === 0)
-                    <div class="status_item_subscribe">
+                    <div class="status_item_subscribe text_size">
                     Subscribe
                     </div>
                     @else
-                    <div class="status_item">
+                    <div class="status_item text_size">
                         Free
                     </div>
                     @endif
                 </div>
     </div>
 
+
 @endforeach
-<div class="container"> {{ $films->links() }}</div>
+<div class="text_size margin_left "> {{ $films->links() }}</div>
 </div>
 @endsection

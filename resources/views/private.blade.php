@@ -1,33 +1,31 @@
 @extends('layout')
 @section('content')
+<div class="width_private">
 <div class="helou_tab">
-
-
-
 	Welcome {{ $user->name }}
-
 </div>
-<div class="cabinet_status">
+
+<div class="price_table">
+
+<div class="ms-5 mt-5">
+    <div class="cabinet_status text_size">
 	Your status: @if ($statusSubscribe)
         active
     @else
         inactive
     @endif
-    <a href="/logout"><button class="btn btn-danger ms-5" type="submit">LogOut</button></a>
-</div>
-<div class="price_table">
-<div class="ms-5 mt-5">
-    <b>Our price :</b>
-</div>
-<div class="ms-5 mt-5 ms-5">
-    For: 1 mount 5$ <a href="{{route('paymnetForm')}}"><button class="btn btn-danger ms-5" type="submit">Pay</button></a>
-</div>
-<div class="ms-5 mt-5 ms-5">
-    For: 6 mount 20$ <button class="btn btn-danger ms-5" type="submit">Pay</button>
-</div>
-<div class="ms-5 mt-5 mb-5" >
-    For: 1 year 50$ <button class="btn btn-danger ms-5" type="submit">Pay</button>
+    <a href="/logout"><button class="btn btn-danger text_size ms-5" type="submit">LogOut</button></a>
 </div>
 </div>
+<div class="ms-5 mt-5 ms-5 text_size">
+    Make payment: <a href="{{route('paymnetForm')}}"><button class="btn text_size btn-success ms-5" type="submit">Pay</button></a>
+</div>
+<div class="ms-5 mt-5 ms-5 text_size">
+    Contact Us: <a href="{{route('contactUs')}}"><button class="btn text_size ms-5 btn-success " type="submit">Contact</button></a>
+</div>
+
+</div>
+</div>
+
 
 @endsection

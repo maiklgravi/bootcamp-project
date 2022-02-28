@@ -10,6 +10,10 @@ class FilmsCommentController extends Controller
 {
     public function leaveComment(Request $request,$id){
         if (Auth::check()){
+            $validatedData = $request->validate([
+                'comment' => ['required','max:70','min:5'],
+
+            ]);
         $user = Auth::user();
             $comment = FilmsComment::create([
             'message'=>$request->comment,

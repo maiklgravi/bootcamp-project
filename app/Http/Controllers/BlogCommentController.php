@@ -6,10 +6,14 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BlogFilmsController extends Controller
+class BlogCommentController extends Controller
 {
     public function leaveComment(Request $request,$id){
         if (Auth::check()){
+            $validatedData = $request->validate([
+                'comment' => ['required','max:70','min:5'],
+
+            ]);
             $user = Auth::user();
             $comment = Comment::create([
             'message'=>$request->comment,

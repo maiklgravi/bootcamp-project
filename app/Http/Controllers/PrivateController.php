@@ -14,10 +14,13 @@ class PrivateController extends Controller
         $statusSubscribe = false;
         $payments = Payment::select()->where('id_user' ,'=' , $user->id)->get();
         foreach ($payments as $payment) {
-        if ($payment->date_payment = Carbon::now()->addMonth($payment->month) ){
-        $statusSubscribe = true;                 }
+        if ($payment->date_payment < Carbon::now()->addMonth($payment->month) ){
+        $statusSubscribe = true;           }
                 }
-        return view('private',['user'=>$user,'statusSubscribe'=>$statusSubscribe]);
+
+        return view('private',['user'=>$user,
+
+        'statusSubscribe'=>$statusSubscribe]);
 
     }
 }

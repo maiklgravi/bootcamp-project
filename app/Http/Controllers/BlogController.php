@@ -19,7 +19,7 @@ class BlogController extends Controller
         if($category===''){
             $articles = Article::orderBy('created_at', $sort)->where('blog_category_id','=',$category)->paginate(5);
         }
-        $articles = Article::orderBy('created_at', $sort)->paginate(5);
+        $articles = Article::orderBy('created_at', $sort)->paginate(8);
         $articles->appends(['sort' => $sort]);
         return view('blog.blog' , [
             'articles' => $articles ,
