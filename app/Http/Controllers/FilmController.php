@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Film;
+use App\Models\FilmsComment;
 use App\Models\FilmVideoName;
 use App\Models\Genre;
 use App\Models\Payment;
@@ -24,7 +25,7 @@ class FilmController extends Controller
         if($genreSelected === '')
         {
             if($name===''){
-                $films = Film::select()->get();
+                $films = Film::select()->paginate(12);
             }else{
                 $films = DB::table('films')
                 ->select(
@@ -35,7 +36,7 @@ class FilmController extends Controller
                 'public_availability',
                 'view_count'
                 )
-                ->where('name', 'LIKE', "%{$name}%")->get();
+                ->where('name', 'LIKE', "%{$name}%")->paginate(12);
             }
 
         }else{
@@ -52,7 +53,7 @@ class FilmController extends Controller
                 )
                 ->join('genre_films', 'films.id', '=', 'genre_films.film_id')
                 ->join('genre', 'genre.id', '=', 'genre_films.genre_id')
-                ->where('genre.id', '=', (int)$genreSelected)->get();
+                ->where('genre.id', '=', (int)$genreSelected)->paginate(12);
             }else{
                 $films = DB::table('films')
                 ->select(
@@ -65,7 +66,7 @@ class FilmController extends Controller
                 )
                 ->join('genre_films', 'films.id', '=', 'genre_films.film_id')
                 ->join('genre', 'genre.id', '=', 'genre_films.genre_id')
-                ->where('genre.id', '=', (int)$genreSelected)->where('films.name', 'LIKE', "%{$name}%") ->get();
+                ->where('genre.id', '=', (int)$genreSelected)->where('films.name', 'LIKE', "%{$name}%")->paginate(12);
             }
         }
 
@@ -79,8 +80,17 @@ class FilmController extends Controller
 
     }
 
+
+
+
+
     public function show ($filmId)
     {
+        if(Auth::check()){
+            $auth = true;
+        }else{
+            $auth = false;
+        }
         $films=Film::findOrFail($filmId);
         $genres = DB::table('genre')
         ->select(
@@ -116,13 +126,51 @@ class FilmController extends Controller
                 $statusSubscribe = false;
                 $payments = Payment::select()->where('id_user' ,'=' , $user->id)->get();
                 foreach ($payments as $payment) {
-                    if ($payment->date_payment = Carbon::now()->addMonth($payment->month) ){
+                    if ($payment->date_payment < Carbon::now()->addMonth($payment->month) )
+                    {
                          $statusSubscribe = true;
+                         $action = 'show';
                          $filmVideo=FilmVideoName::select()->where('film_id','=',$filmId)->get();
                          $filmVideo= $filmVideo[0];
-                    }
-                }
+                         $comment = FilmsComment::select()->where('film_id','=',$filmId)->paginate(12);
+                         return view('film_item' , [
+                             'action'=>$action,
+                             'film' => $film ,
+                             'auth'=>$auth,
+                             'filmVideo'=>$filmVideo,
+                             'comments'=>$comment,
+                             'statusSubscribe'=> $statusSubscribe,
+                             'genres'=>$genres,
+                             ]);
 
+                    }
+
+                }
+                $action = 'payment';
+                $comment = FilmsComment::select()->where('film_id','=',$filmId)->paginate(12);
+                 return view('film_item' , [
+                     'action'=>$action,
+                     'film' => $film ,
+                     'auth'=>$auth,
+                     'comments'=>$comment,
+                     'statusSubscribe'=> $statusSubscribe,
+                     'genres'=>$genres,
+                     ]);
+
+
+            }
+            else{
+                $statusSubscribe=false;
+                $action = 'login';
+                $comment = FilmsComment::select()->where('film_id','=',$filmId)->paginate(12);
+                         return view('film_item' , [
+                             'action'=>$action,
+                             'film' => $film ,
+                             'auth'=>$auth,
+                             'comments'=>$comment,
+                             'statusSubscribe'=> $statusSubscribe,
+                             'genres'=>$genres,
+                             ]);
             }
 
         }else{
@@ -130,16 +178,25 @@ class FilmController extends Controller
             $filmVideo= $filmVideo[0];
 
             $statusSubscribe = false;
+            $action = 'show';
+            $comment = FilmsComment::select()->where('film_id','=',$filmId)->paginate(12);
+            return view('film_item' , [
+                'action'=>$action,
+                'film' => $film ,
+                'auth'=>$auth,
+                'comments'=>$comment,
+                'filmVideo'=>$filmVideo,
+                'statusSubscribe'=> $statusSubscribe,
+                'genres'=>$genres,
+                ]);
         }
-        return view('film_item' , [
-            'film' => $film ,
-            'statusSubscribe'=> $statusSubscribe,
-            'genres'=>$genres,
-            'filmVideo'=>$filmVideo
-            ]);
-
-
     }
+
+
+
+
+
+
     public function recomanded ()
     {
         $films = Film::select([

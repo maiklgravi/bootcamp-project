@@ -14,9 +14,12 @@ class BlogController extends Controller
         $categories = BlogCategory::all();
         $auth = Auth::check();
         $request = request()->all();
-        $category = $request['category'] ?? $categories->first()->id;
+        $category = $request['category'] ?? '';
         $sort = $request['sort'] ?? 'DESC';
-        $articles = Article::orderBy('created_at', $sort)->where('blog_category_id' ,'=' , $category)->paginate(5);
+        if($category===''){
+            $articles = Article::orderBy('created_at', $sort)->where('blog_category_id','=',$category)->paginate(5);
+        }
+        $articles = Article::orderBy('created_at', $sort)->paginate(8);
         $articles->appends(['sort' => $sort]);
         return view('blog.blog' , [
             'articles' => $articles ,

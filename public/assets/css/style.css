@@ -18,7 +18,7 @@ body{
 
 }
 .film_item{
-	max-height: 65vh;
+	aspect-ratio: 30 / 45;
 	max-width: 100%;
 	overflow:unset;
 	display: block;
@@ -59,10 +59,8 @@ background-color: rgb(230, 92, 92);
 	flex-direction: wrap;
 }
 .social_icon_item{
-
 	text-align: center;
 	border-radius: 5px;
-	width: 100px;
     background-color: #fff;
 	margin: 10px;
 }
@@ -80,9 +78,8 @@ background-color: rgb(230, 92, 92);
 	padding-bottom: 10px;
 	background-color: #fff;
 }
-.searc_bar{
-	margin-top: 25px;
-	max-width: 600px;
+.margin_left{
+    padding-left: 100px;
 }
 .film_search_items{
 	margin-top: 20px;
@@ -147,21 +144,44 @@ padding-top: 5px;
 	justify-content: space-around;
 }
 .blog_item{
+    padding: 25px;
 	display: flex;
 	flex-direction: wrap;
 	margin: 40px;
-	min-width: 100vh;
 	background-color: #fff;
 }
+.popular_bar{
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #fff;
+}
+.bgComent{
+    background-color: cadetblue;
+}
+.video_size{
+    width: 100%;
+    padding: 30px;
+    background-color: cadetblue;
+}
 .image_width{
-    min-height: 400px;
+    aspect-ratio: 30 / 45;
 	width: 100%;
+}
+.image_background{
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .text_adaptiv{
 	font-size: 2vw;
 }
 .imaiges_blog{
-	padding: 15px;
+	width: 100%;
+}
+.blog_searc{
+    margin-top: 10px;
+    background-color: cadetblue;
+    padding: 20px;
 }
 .title_blog{
 	font-size: 35px;
@@ -192,14 +212,22 @@ padding-top: 5px;
 	font-weight: 600;
 }
 .comments{
+    padding-bottom: 30px;
 	background-color: cadetblue;
-	min-height: 40vh;
+
+}
+.height_like{
+    width: 20px;
 }
 .comment_title{
 	margin-top: 50px;
 	margin-left: 50px;
 	font-size: 30px;
 	font-weight: 600;
+}
+.width_private{
+    background-color: #fff;
+    min-height: 70vh;
 }
 .comments_item{
 	padding: 20px;
@@ -217,7 +245,7 @@ padding-top: 5px;
 	padding-bottom: 30px;
 	font-size: 40px;
 	font-weight: 600;
-	background-color: crimson;
+	background-color: cadetblue;
 	color: #fff;
 	width: 100vw;
 	display: flex;
@@ -239,22 +267,133 @@ padding-top: 5px;
 .center_size{
     height: 70vh;
 }
-@media (max-width: 1200px){
 
-    .image_width{
-        min-height: 400px;
-        width: 100%;
+.button_size{
+    font-size: 70px;
+}
+.margin_left{
+    margin-left: 0vw;
+}
+.height_form{
+    height: 50px;
+    font-size: 27px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .text_size{
+        font-size: 70px;
+    }
+    .button_size{
+        font-size: 70px;
+    }
+    .social_icon_item{
+        height: 100px;
+       width: 100px;
+    }
+    .margin_left{
+        padding-left: 50px;
+    }
+    .height_form{
+        height: 100px;
+        font-size: 50px;
+    }
+    .height_like{
+        width: 50px;
     }
 }
-@media (max-width: 991px) {
 
-}
-@media (max-width: 767px) {
 
+@media only screen and (min-width: 600px) {
+    .text_size{
+        font-size: 60px;
+    }
+    .button_size{
+        font-size: 60px;
+    }
+    .social_icon_item{
+        height: 100px;
+       width: 100px;
+    }
+    .margin_left{
+        padding-left: 50px;
+    }
+    .height_form{
+        height: 100px;
+        font-size: 50px;
+    }
+    .height_like{
+        width: 50px;
+    }
 }
-@media (max-width: 414px){
-    .image_width{
-        min-height: 800px;
-        width: 100%;
+
+
+@media only screen and (min-width: 768px) {
+    .text_size{
+        font-size: 50px;
+    }
+    .button_size{
+        font-size: 50px;
+    }
+    .social_icon_item{
+       height: 60px;
+       width: 60px;
+    }
+    .margin_left{
+        padding-left: 50px;
+    }
+    .height_form{
+        height: 100px;
+        font-size: 50px;
+    }
+    .height_like{
+        width: 50px;
+    }
+ }
+
+
+@media only screen and (min-width: 992px) {
+    .text_size{
+        font-size: 27px;
+    }.button_size{
+        font-size: 19px;
+    }
+    .social_icon_item{
+        height: 60px;
+       width: 60px;
+    }
+    .margin_left{
+        margin-left: 0vw;
+    }
+    .height_form{
+        height: 50px;
+        font-size: 20px;
+    }
+    .height_like{
+        width: 20px;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .text_size{
+        font-size: 20px;
+    }
+    .button_size{
+        font-size: 19px;
+    }
+    .social_icon_item{
+        height: 60px;
+       width: 60px;
+    }
+    .margin_left{
+        margin-left: 0vw;
+    }
+    .height_form{
+        height: 50px;
+        font-size: 27px;
+    }
+    .height_like{
+        width: 20px;
     }
 }

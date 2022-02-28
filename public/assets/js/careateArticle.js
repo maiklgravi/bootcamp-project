@@ -4,21 +4,19 @@ class Article{
     description;
     category;
     image;
-    authorId;
-    constructor(title,description,category,image,authorId){
+
+    constructor(title,description,category,image){
     this.title = title;
     this.description = description;
     this.category = category;
     this.image = image;
-    this.authorId = authorId;
+
     }
 }/**@type {HTMLFormElement} createArticleForm*/
 const createArticleForm = document.getElementById('create-article-form')
 if ( createArticleForm === undefined){
 }else{/**@type {HTMLInputElement} titleInput*/
 const titleInput = createArticleForm.querySelector('#tiitleInput')
-/**@type {HTMLInputElement} autorIdInput*/
-const authorId= createArticleForm.querySelector('#autor_id')
 /**@type {HTMLTextAreaElement} descriptionInput*/
 const descriptionInput = createArticleForm.querySelector('#descriptionInput')
 /**@type {HTMLSelectElement} categoryInput*/
@@ -40,7 +38,6 @@ imageInput.onchange = (event)=>{
 function CleanForm(){
         titleInput.value = '';
         descriptionInput.value = '';
-        authorId.value = '';
         categoryInput.value = null ;
         imageInput.value = null;
         imagePrewiew.src= ''
@@ -56,10 +53,9 @@ createArticleForm.onsubmit = (event)=>{
    event.preventDefault();
 
 
-   const article = new Article(titleInput.value,descriptionInput.value,categoryInput.value,imageInput.files[0],parseInt(authorId.value))
+   const article = new Article(titleInput.value,descriptionInput.value,categoryInput.value,imageInput.files[0])
    var formData = new FormData();
    formData.append('title', article.title);
-   formData.append('authorId', article.authorId);
    formData.append('description', article.description);
    formData.append('category', article.category);
    formData.append('image', article.image);

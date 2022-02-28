@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
-<div class="container mt-5 m-5 p-5 ">
-<h1>Create article</h1>
+<div class="container  mt-5 m-5 p-5 ">
+<h1>Create article:</h1>
 
 <form id="create-article-form">
     <div class="alert alert-danger" id="alert" role="alert" hidden>
@@ -10,23 +10,20 @@
            </ul>
       </div>
     <div class="mb-3">
-    <label for="titleInput" class="form-label">Tiltle</label>
-    <input type="text" class="form-control" id="tiitleInput" placeholder="Article title">
+    <label for="titleInput" class="text_size mb-3 form-label">Tiltle</label>
+    <input type="text" class="form-control height_form mb-3" id="tiitleInput" placeholder="Article title">
     </div>
-    <div class="mb-3">
-        <label for="author_id" class="form-label">Author id</label>
-        <input type="number" class="form-control" id="autor_id" placeholder="Author id">
-    </div>
+
 
 
   <div class="mb-3">
-    <label for="descriptionInput" class="form-label">Description:</label>
-    <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+    <label for="descriptionInput" class="form-label text_size mb-3">Description:</label>
+    <textarea class="form-control height_form mb-3" id="descriptionInput" rows="3"></textarea>
   </div>
 
   <div class="mb-3">
-    <label for="categoryInput" class="form-label">Category:</label>
-    <select class="form-select me-2" name="category" id="categoryInput">
+    <label for="categoryInput" class="form-label text_size mb-3">Category:</label>
+    <select class="form-select me-2 height_form mb-3" name="category" id="categoryInput" required>
     <option selected disabled>Select any category</option>
     @foreach ($categories as $category)
     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -35,8 +32,8 @@
   </div>
   <div class="row">
       <div class="col-9"><div class="mb-3">
-    <label for="formFile" class="form-label">Upload image for article</label>
-    <input class="form-control" accept="image/*" type="file" id="imageInput">
+    <label for="formFile" class="form-label text_size mb-3">Upload image for article:</label>
+    <input class="form-control height_form mb-3" accept="image/*" type="file" id="imageInput">
   </div></div>
       <div class="col-3">
           <img class="image_with" src="" alt=" prewiew upload image" id="imagePrewiew" hidden>
@@ -44,7 +41,7 @@
   </div>
 
   <div class="mb-3">
-      <div class="d-flex justify-content-center"> <button type="submit" class="btn-lg btn-primary">Create</button></div>
+      <div class="d-flex justify-content-center text_size mb-3"> <button type="submit" class="btn-lg text_size mb-3 btn-primary">Create</button></div>
 </div>
 
 
@@ -55,7 +52,7 @@
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
 
-        <strong class="me-auto">Article has created</strong>
+        <strong class="me-auto text_size mb-3">Article has created</strong>
 
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>

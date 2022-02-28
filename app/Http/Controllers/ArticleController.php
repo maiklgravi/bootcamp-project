@@ -29,6 +29,12 @@ class ArticleController extends Controller
         }else{
             $property = false;
         }
+        if(Auth::check()){
+            $auth = true;
+        }else{
+            $auth = false;
+        }
+        $category = BlogCategory::where('id','=',$article->blog_category_id)->get();
 
         $article->view_count++;
         $article->save();
@@ -36,6 +42,8 @@ class ArticleController extends Controller
 
         return view('article.article' , [
             'article' => $article ,
+            'auth'=>$auth,
+            'category'=>$category[0]->name,
             'comments' => $comments ,
             'articlesId' => $articlesId,
             'property'=>$property]);
@@ -44,22 +52,38 @@ class ArticleController extends Controller
 
 
     public function formCreateArticle (){
-        $categories = BlogCategory::all();
+        if(Auth::check()){
+            $categories = BlogCategory::all();
 
         return view('blog.createArticle',[
             'categories' => $categories,
         ]);
+        }else{
+            return redirect('/login');
+        }
+
     }
 
 
 
 
     public function formEditArticle ($id){
-        $categories = BlogCategory::all();
-        return view('article.edit_article',[
-            'categories' => $categories,
-            'idArticle' => $id
-        ]);
+        if(Auth::check()){
+            $article = Article::find($id);
+            if($article->author_id === Auth::user()->id){
+                $categories = BlogCategory::all();
+                        return view('article.edit_article',[
+                            'categories' => $categories,
+                            'idArticle' => $id
+                        ]);
+            }else{
+                return redirect('/my_article');
+            }
+
+        }else{
+            return redirect('/login');
+        }
+
     }
 
 
@@ -79,11 +103,11 @@ class ArticleController extends Controller
      /**
       * Returns list of most popular articles
       *
-      * @param ModelLogger $logger
+      *
       *
       * @return JsonResponse
       */
-     public function readMostPopularArticles(ModelLogger $logger): JsonResponse
+     public function readMostPopularArticles(): JsonResponse
      {
          $mostPopularArticles = Article::all()
              ->sortByDesc('view_count')
@@ -104,50 +128,6 @@ class ArticleController extends Controller
      }
 
 
-
-
-      /**
-     * Read list of all articles
-     *
-     * @return JsonResponse
-     */
-    public function readAllArticles(): JsonResponse
-    {
-        $allArticles = Article::all()
-            ->sortByDesc('id');
-
-        $articlesArray = [];
-        foreach ($allArticles as $article) {
-            $articlesArray[] = [
-                'id' => $article->id,
-                'title' => $article->title,
-                'description' => $article->desription,
-                'view_count' => $article->view_count,
-            ];
-        }
-
-        return $this->responseFactory->json($articlesArray);
-    }
-
-
-    /**
-     * Reads one articles from provided article id.
-     *
-     * @param $id
-     *
-     * @return JsonResponse
-     */
-    public function readOneArticle($id): JsonResponse
-    {
-        $article = Article::find($id);
-
-        if ($article) {
-            return $this->responseFactory->json($article);
-        }
-
-        return $this->responseFactory->json(null, 404);
-    }
-
     /**
      * Creates new article from provided data
      *
@@ -157,7 +137,8 @@ class ArticleController extends Controller
      */
     public function createArticle(Request $request): JsonResponse
     {
-        $request->validate([
+        if(Auth::check()){
+            $request->validate([
             'title' => ['required', 'string', 'max:255', 'min:10'],
             'description' => ['string', 'min:15'],
             'category' => [ 'numeric'],
@@ -168,7 +149,7 @@ class ArticleController extends Controller
         $article = Article::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'author_id' => $request->input('authorId'),
+            'author_id' => Auth::user()->id,
             'image' => $request->file('image')->store('/','public'),
             'excerpt' => $request->input('description'),
             'blog_category_id' => $request->input('category'),
@@ -177,6 +158,10 @@ class ArticleController extends Controller
         ]);
 
         return $this->responseFactory->json(['id' => $article->id], 201);
+        }else{
+            return $this->responseFactory->json(['error' => "You not login"], 400);
+        }
+
     }
      /**
      * Creates new article from provided data
@@ -187,48 +172,63 @@ class ArticleController extends Controller
      */
     public function editArticle(Request $request,$id): JsonResponse
     {
-        $user = Auth::user();
-        $request->validate([
-            'title' => ['required', 'string', 'max:255', 'min:10'],
-            'description' => ['string', 'min:15'],
-            'category' => [ 'numeric'],
-            'image' => ['image'],
-        ]);
+        if(Auth::check()){
 
-        $article = Article::find($id);
-        $article->title =  $request->input('title');
-        $article->description =  $request->input('description');
-        $article->author_id =  $user->id;
-        $article->excerpt =  $request->input('description');
-        $article->blog_category_id =  $request->input('category');
-        $article->seo_title =  $request->input('title');
-        $article->seo_description =  $request->input('description');
-        $article->image =  $request->file('image')->store('/','public');
-        $article->save();
+            $user = Auth::user();
+            $request->validate([
+                'title' => ['required', 'string', 'max:255', 'min:10'],
+                'description' => ['string', 'min:15'],
+                'category' => [ 'numeric'],
+                'image' => ['image'],
+            ]);
+
+            $article = Article::find($id);
+            if($article->author_id === $user->id){
+                $article->title =  $request->input('title');
+                $article->description =  $request->input('description');
+                $article->author_id =  $user->id;
+                $article->excerpt =  $request->input('description');
+                $article->blog_category_id =  $request->input('category');
+                $article->seo_title =  $request->input('title');
+                $article->seo_description =  $request->input('description');
+                $article->image =  $request->file('image')->store('/','public');
+                $article->save();
+                return $this->responseFactory->json(['id' => $article->id], 200);
+            }else{
+                return $this->responseFactory->json(['error' => "Its not you article"], 200);
+            }
 
 
-        return $this->responseFactory->json(['id' => $article->id], 200);
-    }
 
 
-    /**
-     * Deletes article resource from provided id
-     *
-     * @param $id
-     *
-     * @return JsonResponse
-     */
-    public function deleteArticle($id): JsonResponse
-    {
-        $article = Article::find($id);
-
-        if ($article) {
-            $article->delete();
-
-            return $this->responseFactory->json(null, 204);
+        }else{
+            return $this->responseFactory->json(['error' => "You not login"], 400);
         }
 
-        return $this->responseFactory->json(null, 404);
     }
+
+
+
+    public function deleteArticle($id)
+    {
+        if(Auth::check()){
+
+            $article = Article::find($id);
+            if ($article->author_id === Auth::user()->id) {
+
+            $article->delete();
+
+            return redirect('/my_article');
+           }else{
+            return redirect('/my_article');
+           }
+        }
+        else{
+            return redirect('/login');
+        }
+    }
+
+
+
 
 }

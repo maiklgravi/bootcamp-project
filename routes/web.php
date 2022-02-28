@@ -7,6 +7,8 @@ use App\Http\Controllers\AboutAsController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BlogCommentController;
+use App\Http\Controllers\FilmsCommentController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JSHomeWorkController;
@@ -28,6 +30,9 @@ use App\Http\Controllers\PrivateController;
 Route::get('/articles/most-poupular',[ArticleController::class,'readMostPopularArticles'])->name('mostPopularArticles');
 Route::get('/film/{id}/like', [LikeDislikeFilmController::class, 'getInfo']);
 Route::post('/articles', [ArticleController::class, 'createArticle']);
+Route::post('/blog/article/{id}/comment',[BlogCommentController::class,'leaveComment']);
+Route::post('/film/{id}/comment', [FilmsCommentController::class, 'leaveComment']);
+Route::get('/blog/article/{id}/delete', [ArticleController::class, 'deleteArticle']);
 Route::post('/film/{id}/like', [LikeDislikeFilmController::class, 'makeLikeOrDislike']);
 Route::get('/blog/article/{articlesId}/edit',[ArticleController::class,'formEditArticle'])->name('editArticle');
 Route::post('/article/{articlesId}',[ArticleController::class,'editArticle']);
@@ -44,7 +49,7 @@ Route::get('contacts',[ContactUsController::class, 'view'])->name('contactUs')->
 Route::post('contacts',[ContactUsController::class, 'send'])->name('contactUs.send');
 Route::get('/payment',[PaymentController::class,'index'])->name('paymnetForm');
 Route::post('/payment',[PaymentController::class,'payment'])->name('paymentSubscribe');
-Route::get('/film/article/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
+Route::get('/film/{articlesId}',[FilmController::class,'show'])->name('filmArticle');
 Route::name('user.')->group(function(){
     Route::get('/private', [PrivateController::class, 'showWelcomePage'])
         ->middleware('auth')

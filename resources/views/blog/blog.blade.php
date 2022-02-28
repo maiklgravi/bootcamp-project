@@ -1,44 +1,44 @@
 @extends('layout')
 @section('content')
-    <div class="searc_bar container-fluid">
-        <div class="row">
-            <div class="col-9"><form class="d-flex" method="GET" action="">
-            <select class="form-select me-2" name="category">
-                @foreach ($categories as $category)
-                <option value="{{$category->id}}"
-                    {{ $filter['category'] === $category->id ? 'selected' : ''}}>{{$category->name}}</option>
-                @endforeach
-            </select>
-            {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> --}}
-            <select class="form-select me-2" name="sort">
-                <option value="DESC" {{ $filter['sort'] === 'DESC' ? 'selected' : ''}}>DESC</option>
-                <option value="ASC" {{ $filter['sort'] === 'ASC' ? 'selected' : ''}}>ASC</option>
-            </select>
-            <button class="btn btn-danger" type="submit">Apply sort</button>
-        </form></div>
-        @if ($auth)
-           <div class="col-3"><a href="/blog/article/create" class="btn btn-primary">Create article</a></div>
-        @endif
 
-        </div>
+<form class="d-flex p-5" method="GET" >
 
-    </div>
-    <div class="blog-search">
+    <select class="form-select me-2" name="category">
+    <option value="">All category</option>
+    @foreach ($categories as $category)
+    <option value="{{$category->id}}"
+    {{ $filter['category'] === $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+    @endforeach
+    </select>
+    <select class="form-select" name="sort">
+    <option value="DESC" {{ $filter['sort'] === 'DESC' ? 'selected' : ''}}>DESC</option>
+    <option value="ASC" {{ $filter['sort'] === 'ASC' ? 'selected' : ''}}>ASC</option>
+    </select>
+<button class="btn btn-primary mx-3" type="submit">Apply sort</button>
+@if ($auth)
+<a href="/my_article" class="btn mx-2 btn-primary">My article</a>
+<a href="/blog/article/create" class="btn mx-2 btn-primary">Create article</a>
+@endif</form>
 
-        <div class="container"> {{ $articles->links() }}</div>
-    <div class="row">
-        <div class="col-9">
+
+<div class="row p-0 m-0">
+    <div class="col-sm-12 col-xl-7 mx-auto blog_searc">
+        <div class="text_size mx-5"> {{ $articles->links() }}</div>
+
         @foreach ($articles as $article)
-
         @include('blog.article',['article'=> $article])
         {{ $article->name }}
         @endforeach
-        </div>
-        <div class="col-3 most_popular">
-<section>
-    <h2>Most popular</h2>
+
+        <div class="text_size  mx-5"> {{ $articles->links() }}</div>
+    </div>
+
+    <div class="col-sm-12 col-xl-5 ">
+        <section class="popular_bar">
     <ul most-popular-list class="list-style">
-        <template popular-article-template><li><div class="card mb-3" style="max-width: 540px;">
+        <li><h2 class="h1">Most popular:</h2></li>
+        <template popular-article-template>
+            <li><div class="card mb-3" >
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" data-wiew-counter>
 
                </span>
@@ -51,7 +51,7 @@
               <h5 class="card-title" title>Card title</h5>
               <p class="card-text" description>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <a class="btn btn-primary" href="" more>More</a>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
             </div>
           </div>
         </div>
@@ -60,12 +60,8 @@
     </ul>
 
 </section>
-        </div>
     </div>
-        <div class="container"> {{ $articles->links() }}</div>
 
-
-<div class="blog-search">
     <script src="/js/app.js"></script>
     <script src="/js/popular_article.js"></script>
 @endsection

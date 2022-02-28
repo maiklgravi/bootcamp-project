@@ -1,6 +1,6 @@
-<div class="down_footer text_adaptiv">
+<div class="down_footer text_size">
     <div class="list_foter">
-	<div class="row">
+	<div class="row m-0 p-0">
     <div class="col-12 col-lg-6 text-center">
         <p class="">Social</p>
         <div class="d-flex justify-content-center">
@@ -21,9 +21,9 @@
                     </div>
                     </div>
     </div>
-    <div class="col-lg-6 text-center"><p>About Cinema M</p>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-            Donec ullamcorper nulla non metus auctor fringilla.</p></div>
+    <div class="col-lg-6 text-center text_size">
+        <p>Cinema M</p>
+            <p>Cinema with us it's pleasure.</p></div>
     <div class="copiright">Copyright © 2021. All Rights Reserved</div>
 	</div>
 </div>

@@ -10,10 +10,10 @@ use Carbon\Carbon;
 class Comment extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'author_email',
-        'message'
+        'author_id',
+        'message',
+        'article_id'
     ];
     public  function article(){
         return $this->belongsTo(Article::class);

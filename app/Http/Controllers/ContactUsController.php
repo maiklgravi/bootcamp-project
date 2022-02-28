@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactUsRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Mail\Message;
 use App\Services\ContactUsMailer;
 use Illuminate\Support\Facades\Log;
 

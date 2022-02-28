@@ -9,11 +9,12 @@ class FilmsComment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
+
         'message',
         'film_id',
         'user_id'
     ];
+    protected $table = 'films_comment';
     public  function filmsComment(){
         return $this->belongsTo(Film::class);
     }
